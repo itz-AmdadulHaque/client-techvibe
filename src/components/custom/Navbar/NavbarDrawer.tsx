@@ -9,7 +9,6 @@ import {
 
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -17,14 +16,16 @@ import {
 } from "@/components/ui/sheet";
 import { NavItemType } from "@/Types/ComponentTypes";
 import { ChevronDown, Menu, ShoppingCart } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import Navbarcollapse from "./NavbarCollaps";
 
 export function NavbarDrawer({ navItems }: { navItems: NavItemType[] }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const closeSheet = () => setIsOpen(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const closeSheet = () => setSheetOpen(false);
   return (
-    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+    <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
       <SheetTrigger asChild className="lg:hidden">
         <Button size="icon" className="border h-8 w-8 rounded-md">
           <Menu color="white" className="size-6" />
@@ -32,8 +33,19 @@ export function NavbarDrawer({ navItems }: { navItems: NavItemType[] }) {
       </SheetTrigger>
 
       <SheetContent className="px-4">
-        <SheetHeader>
-          <SheetTitle>Menu</SheetTitle>
+        <SheetHeader className="px-0 border-b">
+          <SheetTitle className="px-0">
+            <div className="flex items-center gap-2">
+              <Image
+                src="/logo.png"
+                alt="TechVibe"
+                width={70}
+                height={70}
+                className="w-12 rounded-full"
+              />
+              <h2 className="text-2xl font-semibold">TechVibe</h2>
+            </div>
+          </SheetTitle>
         </SheetHeader>
 
         <div className="flex flex-col  justify-start gap-4">
@@ -48,20 +60,9 @@ export function NavbarDrawer({ navItems }: { navItems: NavItemType[] }) {
                   <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
                 </CollapsibleTrigger>
 
-                <CollapsibleContent className="pl-6 my-4 flex flex-col items-start gap-4">
-                  {item.links.map((subItem) => (
-                    <SheetClose key={subItem.label}>
-                      <Link
-                        href={subItem.href!}
-                        className="w-full text-left flex items-center"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {subItem.icon && (
-                          <span className="mr-2">{subItem.icon}</span>
-                        )}
-                        {subItem.label}
-                      </Link>
-                    </SheetClose>
+                <CollapsibleContent className="pl-2 flex flex-col items-start gap-4">
+                  {item.links.map((category) => (
+                    <Navbarcollapse key={category.label} category={category} closeSheet={closeSheet} />
                   ))}
                 </CollapsibleContent>
               </Collapsible>

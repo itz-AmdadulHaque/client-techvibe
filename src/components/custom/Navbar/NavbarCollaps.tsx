@@ -12,7 +12,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-function Navbarcollapse({ category }: { category: NavItemType }) {
+function Navbarcollapse({ category, closeSheet }: { category: NavItemType, closeSheet?: () => void }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -33,6 +33,7 @@ function Navbarcollapse({ category }: { category: NavItemType }) {
         <Link
           href={category.href!}
           className="flex-1 flex items-center gap-3 rounded-sm transition-all duration-200"
+          onClick={closeSheet}
         >
           {category.image && (
             <Image
@@ -75,6 +76,7 @@ function Navbarcollapse({ category }: { category: NavItemType }) {
               "text-sm font-normal text-gray-600 dark:text-gray-300",
               "hover:bg-green-50 hover:text-green-600 hover:border-green-500 dark:hover:bg-green-900/20 dark:hover:text-green-400"
             )}
+            onClick={closeSheet}
           >
             {subItem.image && (
               <Image
