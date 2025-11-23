@@ -19,12 +19,12 @@ export function NavbarDrawer({ navItems }: { navItems: NavItemType[] }) {
   return (
     <Sheet>
       <SheetTrigger asChild className="lg:hidden">
-        <Button variant="link" size="icon" className="">
-          <Menu strokeWidth={5.5} size={36} color="white" />
+        <Button size="icon"  className="border h-8 w-8 rounded-md">
+          <Menu color="white" className="size-6" />
         </Button>
       </SheetTrigger>
 
-      <SheetContent side="left" className="px-4">
+      <SheetContent className="px-4">
         <SheetHeader>
           <SheetTitle>Menu</SheetTitle>
         </SheetHeader>

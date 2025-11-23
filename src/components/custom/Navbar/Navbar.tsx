@@ -110,15 +110,14 @@ export default function Navbar() {
     <>
       {/* Desktop Top Navbar */}
       <nav className="shadow-md fixed top-0 left-0 right-0 z-50 bg-black text-white">
-        <div className="flex justify-between items-center px-1 lg:px-3 py-4 container mx-auto">
+        <div className="flex justify-between items-center px-2 lg:px-3 py-4 container mx-auto">
           <div className="flex items-center gap-2 md:gap-4">
-            <NavbarDrawer navItems={navItems} />
             <Image
               src="/logo.png"
               alt="TechVibe"
               width={100}
               height={100}
-              className="w-12 rounded-full"
+              className="w-14 sm:w-12 rounded-full"
             />
             <h2 className=" hidden xl:block text-xl font-semibold">TechVibe</h2>
           </div>
@@ -212,13 +211,16 @@ export default function Navbar() {
               <Link
                 href="/login"
                 className={cn(
-                  "text-sm font-medium hover:text-blue-600",
-                  pathname === "login" && "text-blue-600 font-semibold"
+                  "border p-1 px-2 rounded-md hover:text-red-500 hover:border-red-500",
+                  pathname === "login" && "text-red-500 border-red-500"
                 )}
               >
                 Login
               </Link>
             )}
+
+            <NavbarDrawer navItems={navItems} />
+
           </div>
         </div>
       </nav>
