@@ -118,3 +118,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+/* for not removing scrollbar when any shadcn component is open */
+body[data-scroll-locked] {
+  margin-right: 0px !important; /* For LTR layout */
+  margin-left: 0px !important;  /* For RTL layout */
+  overflow: visible !important;
+}
+
+/* for not removing scrollbar when any shadcn component is open */
+html body[data-scroll-locked] {
+  margin-right: 0px !important; /* For LTR layout */
+  margin-left: 0px !important;  /* For RTL layout */
+  overflow: visible !important;
+}
