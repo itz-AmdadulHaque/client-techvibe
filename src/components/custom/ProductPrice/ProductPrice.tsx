@@ -20,10 +20,10 @@ export default function ProductPrice({ product }: { product: Product }) {
             product.price - product.discount;
 
         return (
-            <div className="text-sm flex font-semibold gap-2 ">
+            <div className="flex items-center font-semibold gap-1 bangla-font ">
                 {/* <Image src="/taka.png" alt="Taka symbol" width={20} height={20} /> */}
-                <p className="line-through text-base font-thin text-gray-400">BDT {product.price}</p>
-                <p className="font-bold text-xl">BDT {discountedPrice}</p>
+                <p className="line-through text-base font-thin text-red-400">{product.price}<span className="bangla-font font-semibold">৳</span></p>
+                <p className="font-semibold text-xl">{discountedPrice}<span className="bangla-font font-semibold">৳</span></p>
             </div>
         );
     }
@@ -31,7 +31,7 @@ export default function ProductPrice({ product }: { product: Product }) {
     return (
         <div >
             {/* <Image src="/taka.png" alt="Taka symbol" width={20} height={20} /> */}
-            <p className="text-xl font-semibold">BDT {product.price}</p>
+            <p className="text-xl font-semibold ">{product.price}<span className="bangla-font font-semibold"></span></p>
         </div>
     );
 }

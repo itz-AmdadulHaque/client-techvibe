@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
 import "./textEditorStyles.css"
 import AuthProvider from "@/Provider/AuthProvider/AuthProvider";
@@ -27,6 +27,14 @@ const candal = Candal({
   display: "swap",
   variable: "--font-candal",
 });
+
+const notoSerifBengali = Noto_Serif_Bengali({
+  subsets: ["bengali"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-noto-serif-bengali",
+});
+
 
 export const metadata: Metadata = {
   title: "TechVibe Global - Innovative Engineering Solutions",
@@ -68,7 +76,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={candal.variable}>
+    <html lang="en" suppressHydrationWarning className={`${candal.variable} ${notoSerifBengali.variable}`}>
 
       <head>
         <link rel="icon" href="/logo.png" sizes="any" />

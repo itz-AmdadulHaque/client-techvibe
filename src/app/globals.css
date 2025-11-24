@@ -133,3 +133,7 @@ html body[data-scroll-locked] {
   margin-left: 0px !important;  /* For RTL layout */
   overflow: visible !important;
 }
+
+.bangla-font {
+  font-family: var(--font-noto-serif-bengali);
+}
