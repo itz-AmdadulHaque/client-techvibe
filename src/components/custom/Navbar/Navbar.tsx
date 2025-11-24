@@ -111,7 +111,7 @@ export default function Navbar() {
       {/* Desktop Top Navbar */}
       <nav className="shadow-md fixed top-0 left-0 right-0 z-50 bg-black text-white">
         <div className="flex justify-between items-center px-2 lg:px-3 py-4 container mx-auto">
-          <div className="flex items-center gap-2 md:gap-4">
+          <Link href="/" className="flex items-center gap-2 md:gap-4">
             <Image
               src="/logo.png"
               alt="TechVibe"
@@ -120,7 +120,7 @@ export default function Navbar() {
               className="w-14 sm:w-12 rounded-full"
             />
             <h2 className=" hidden xl:block text-xl font-semibold">TechVibe</h2>
-          </div>
+          </Link>
 
           <ul className="hidden lg:flex gap-6 items-center">
             {navItems.map((item) => (
@@ -220,7 +220,6 @@ export default function Navbar() {
             )}
 
             <NavbarDrawer navItems={navItems} />
-
           </div>
         </div>
       </nav>

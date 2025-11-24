@@ -35,7 +35,7 @@ export function NavbarDrawer({ navItems }: { navItems: NavItemType[] }) {
       <SheetContent className="px-4 w-full">
         <SheetHeader className="px-0 border-b">
           <SheetTitle className="px-0">
-            <div className="flex items-center gap-2">
+            <Link href="/" onClick={closeSheet} className="flex items-center gap-2">
               <Image
                 src="/logo.png"
                 alt="TechVibe"
@@ -44,7 +44,7 @@ export function NavbarDrawer({ navItems }: { navItems: NavItemType[] }) {
                 className="w-12 rounded-full"
               />
               <h2 className="text-2xl font-semibold">TechVibe</h2>
-            </div>
+            </Link>
           </SheetTitle>
         </SheetHeader>
 
