@@ -20,11 +20,11 @@ function Navbarcollapse({ category, closeSheet }: { category: NavItemType, close
       key={category?.label + category?.href}
       open={isOpen}
       onOpenChange={setIsOpen}
-      className="flex w-full flex-col gap-1 px-0 pt-0 pb-0"
+      className="flex w-full flex-col px-0 pt-0 pb-0"
     >
       <div
         className={cn(
-          "flex items-center justify-between gap-1 p-1 w-full sm:min-w-max",
+          "flex items-center justify-between gap-2 p-1 w-full sm:min-w-max",
           "hover:bg-green-50 hover:text-green-600 dark:hover:bg-green-900/30 dark:hover:text-green-400",
           isOpen &&
             "bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-400"

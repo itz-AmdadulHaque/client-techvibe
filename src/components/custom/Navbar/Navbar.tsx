@@ -211,7 +211,7 @@ export default function Navbar() {
               <Link
                 href="/login"
                 className={cn(
-                  "border p-1 px-2 rounded-md hover:text-red-500 hover:border-red-500",
+                  "border p-1 px-2 rounded-md hover:text-red-500 hover:border-red-500 dark:text-white dark:border-white",
                   pathname === "login" && "text-red-500 border-red-500"
                 )}
               >
