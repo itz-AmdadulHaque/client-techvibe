@@ -54,13 +54,13 @@ export function NavbarDrawer({ navItems }: { navItems: NavItemType[] }) {
               <Collapsible key={item.label}>
                 <CollapsibleTrigger className="group flex items-center justify-between w-full text-left">
                   <div className="flex items-center">
-                    {item.icon && <span className="mr-2">{item.icon}</span>}
+                    {item.icon && <span className="mr-2 ">{item.icon}</span>}
                     {item.label}
                   </div>
                   <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
                 </CollapsibleTrigger>
 
-                <CollapsibleContent className="pl-2 flex flex-col items-start gap-4">
+                <CollapsibleContent className="mt-2 sm:mt-0 pl-2 flex flex-col items-start gap-4">
                   {item.links.map((category) => (
                     <Navbarcollapse key={category.label} category={category} closeSheet={closeSheet} />
                   ))}
