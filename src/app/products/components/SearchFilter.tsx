@@ -195,7 +195,7 @@ export default function SearchFilters({ initialFilters }: { initialFilters: Filt
   )
 
   return (
-    <div className="space-y-4 shadow-md p-4 rounded-lg">
+    <div className="space-y-4 shadow-md p-4 rounded-lg h-full overflow-auto">
 
 
       {/* price range */}
