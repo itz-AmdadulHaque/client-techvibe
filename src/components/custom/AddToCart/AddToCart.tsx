@@ -10,9 +10,9 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import React, { useState } from "react";
-import { CloudDownload } from "lucide-react";
 import { LoadingOverlay } from "../LoadingOverlay/LoadingOverlay";
 import { DialogTitle } from "@radix-ui/react-dialog";
+import { cn } from "@/lib/utils";
 
 const AddToCart = ({
     variant,
@@ -20,7 +20,8 @@ const AddToCart = ({
     type,
     count,
     successResponse,
-    slug
+    slug,
+    className
 }: {
     variant?:
     | "link"
@@ -34,6 +35,7 @@ const AddToCart = ({
     count: number;
     successResponse?: () => void;
     slug: string;
+    className?: string;
 }) => {
     const axiosPrivate = useAxiosPrivate();
     const { auth } = useAuth();
@@ -41,8 +43,6 @@ const AddToCart = ({
 
     const [open, setOpen] = useState(false);
     const [description, setDescription] = useState("");
-
-
 
     const handleAddToCart = async ({
         id,
@@ -66,7 +66,6 @@ const AddToCart = ({
             quantity: count,
             description: type === "service" ? description : undefined,
         }
-        
 
         const res = await axiosPrivate.post("/cart",cartInfo);
         return res.data;
@@ -96,7 +95,7 @@ const AddToCart = ({
         return (
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
-                    <Button variant={variant} disabled={isPending}>
+                    <Button variant={variant} disabled={isPending} className="rounded-sm">
                         {isPending ? "ADDING..." : "ADD TO CART"}
                     </Button>
                 </DialogTrigger>
@@ -111,7 +110,10 @@ const AddToCart = ({
                     />
                     <Button
                         onClick={() => addToCart({ id, type, count, description })}
-                        className="mt-3 w-full"
+                        className={cn(
+                            "mt-3 w-full rounded-sm",
+                            className
+                        )}
                         disabled={isPending}
                     >
                         {isPending ? "ADDING..." : "CONFIRM & ADD"}
@@ -126,6 +128,10 @@ const AddToCart = ({
             variant={variant}
             onClick={() => addToCart({ id, type, count })}
             disabled={isPending}
+            className={cn(
+                "rounded-sm",
+                className
+            )}
         >
             {isPending ? "ADDING..." : "ADD TO CART"}
 
