@@ -2,8 +2,6 @@
 import SectionTitle from "@/components/custom/SectionTitle/SectionTitle";
 import ServiceCard from "@/components/custom/ServiceCard/ServiceCard";
 import { ServiceType } from "@/Types/Types";
-import Autoplay from "embla-carousel-autoplay";
-import { useRef } from "react";
 
 const HomepageServices = ({
   services,
