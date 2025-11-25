@@ -33,21 +33,20 @@ const ServiceCard = ({ service }: { service: ServiceType }) => {
 
         {/* Bottom Content */}
         <div className="absolute bg-black/40 bottom-0 w-full px-4 py-4 text-white space-y-2">
-          {/* Title */}
           <h3 className="text-lg font-semibold">{service.title}</h3>
 
           {/* Description */}
           <p
             className="text-sm text-gray-200 leading-snug line-clamp-2"
             dangerouslySetInnerHTML={{
-              __html: truncateHtml(service.description, 200),
+              __html: truncateHtml(service.description, 120),
             }}
           />
 
           {/* Optional Price */}
-          {!service.price && (
+          {service.price && (
             <p className="text-lg font-semibold text-green-400">
-              500 ৳ {service.price}
+               {service.price}৳
             </p>
           )}
 
