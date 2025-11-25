@@ -155,3 +155,51 @@
         cursor: col-resize;
     }
 }
+
+
+/* ===========================
+   DARK MODE SUPPORT
+   =========================== */
+
+/* Base text */
+.dark .tiptap {
+  color: #f3f4f6; /* gray-100 */
+}
+
+/* Headings and text */
+.dark .tiptap h1,
+.dark .tiptap h2,
+.dark .tiptap h3,
+.dark .tiptap p,
+.dark .tiptap li,
+.dark .tiptap blockquote {
+  color: #f3f4f6; /* gray-100 */
+}
+
+/* Blockquote */
+.dark .tiptap blockquote {
+  border-left-color: #4b5563; /* gray-600 */
+  color: #e5e7eb; /* gray-200 */
+}
+
+/* Inline code */
+.dark .tiptap code {
+  background-color: #1f2937; /* gray-800 */
+  color: #f3f4f6; /* gray-100 */
+}
+
+/* Table base */
+.dark .tiptap table {
+  border-color: #4b5563; /* gray-600 */
+}
+
+.dark .tiptap table td,
+.dark .tiptap table th {
+  border-color: #4b5563; /* gray-600 */
+  color: #e5e7eb; /* gray-200 */
+}
+
+/* Table header */
+.dark .tiptap table th {
+  background-color: #374151; /* gray-700 */
+}
