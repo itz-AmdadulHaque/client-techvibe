@@ -15,7 +15,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           className="flex flex-col flex-grow text-center"
         >
           <div className="rounded-md group flex flex-col gap-1">
-            <div className="overflow-hidden rounded-sm aspect-square">
+            <div className="overflow-hidden rounded-sm aspect-square shadow-sm">
               <Image
                 src={
                   product.thumbnail
