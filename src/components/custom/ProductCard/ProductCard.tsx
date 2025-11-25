@@ -29,9 +29,9 @@ const ProductCard = ({ product }: { product: Product }) => {
               />
             </div>
 
-            <h2 className="text-base font-bold mb-1">{product.title}</h2>
+            <h2 className="text-base font-bold mb-1 px-1">{product.title}</h2>
 
-            <div className="flex justify-center mb-2">
+            <div className="flex justify-center mb-2 px-1">
               <ProductPrice product={product} />
             </div>
           </div>

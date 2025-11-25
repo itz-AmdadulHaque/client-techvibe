@@ -3,7 +3,7 @@ import { Product } from "@/Types/Types";
 export default function ProductPrice({ product }: { product: Product }) {
     if (!product.price) {
         return (
-            <div className="text-muted-foreground flex items-center font-semibold gap-2">
+            <div className="text-muted-foreground flex items-center font-semibold">
                 Price on Request
             </div>
         );
@@ -20,10 +20,10 @@ export default function ProductPrice({ product }: { product: Product }) {
             product.price - product.discount;
 
         return (
-            <div className="flex items-center font-semibold gap-1 bangla-font ">
+            <div className="flex flex-wrap items-center justify-center font-semibold gap-1 bangla-font ">
                 {/* <Image src="/taka.png" alt="Taka symbol" width={20} height={20} /> */}
-                <p className="line-through text-base font-thin text-red-400">{product.price}<span className="bangla-font font-semibold">৳</span></p>
-                <p className="font-semibold text-xl">{discountedPrice}<span className="bangla-font font-semibold">৳</span></p>
+                <p className="line-through text-sm font-thin text-red-500">{product.price}<span className="bangla-font font-semibold">৳</span></p>
+                <p className="font-semibold text-lg">{discountedPrice}<span className="bangla-font font-semibold">৳</span></p>
             </div>
         );
     }
@@ -31,7 +31,7 @@ export default function ProductPrice({ product }: { product: Product }) {
     return (
         <div >
             {/* <Image src="/taka.png" alt="Taka symbol" width={20} height={20} /> */}
-            <p className="text-xl font-semibold ">{product.price}<span className="bangla-font font-semibold"></span></p>
+            <p className="text-lg font-semibold ">{product.price}<span className="bangla-font font-semibold"></span></p>
         </div>
     );
 }
