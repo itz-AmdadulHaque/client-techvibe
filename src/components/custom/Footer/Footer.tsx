@@ -23,7 +23,7 @@ export default function Footer() {
     return (
         <footer
             id="contact"
-            className="bg-gradient-to-br from-black via-gray-900 to-black"
+            className="bg-black border-t border-neutral-700"
         >
             <div className="max-w-7xl mx-auto px-6 py-16">
                 {/* Main Grid - 3 Columns */}
@@ -205,7 +205,7 @@ export default function Footer() {
 
                             <div className="grid grid-cols-2 gap-3">
                                 <a
-                                    href="mailto:info@techvibeglobal.com"
+                                    href="mailto:techvibeglobal@gmail.com"
                                     className="px-4 py-3 border border-gray-600 text-gray-300 hover:bg-gray-800 hover:border-gray-500 font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2 text-sm"
                                 >
                                     <svg
