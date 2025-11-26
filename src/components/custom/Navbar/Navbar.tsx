@@ -109,7 +109,7 @@ export default function Navbar() {
   return (
     <>
       {/* Desktop Top Navbar */}
-      <nav className="shadow-md fixed top-0 left-0 right-0 z-50 bg-black text-white border-b border-neutral-700">
+      <nav className="shadow-md fixed top-0 left-0 right-0 z-100 bg-black text-white border-b border-neutral-700">
         <div className="flex justify-between items-center px-2 lg:px-3 py-4 container mx-auto">
           <Link href="/" className="flex items-center gap-2 md:gap-4">
             <Image
