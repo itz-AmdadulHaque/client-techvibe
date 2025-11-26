@@ -55,7 +55,7 @@ const ServiceCard = ({ service }: { service: ServiceType }) => {
             {/* View Details Button */}
             <Button
               variant="default"
-              className="bg-transparent border text-white font-semibold flex-1 rounded-sm"
+              className="bg-transparent border text-white font-semibold flex-1 rounded-sm dark:hover:bg-black/25"
               asChild
             >
               <Link href={`/services/${service.slug}`}>View Details</Link>
@@ -67,7 +67,7 @@ const ServiceCard = ({ service }: { service: ServiceType }) => {
               slug={service.slug}
               type="service"
               count={1}
-              className="flex-1 bg-white text-black "
+              className="flex-1 bg-white text-black hover:bg-white/90"
             />
           </div>
         </div>
