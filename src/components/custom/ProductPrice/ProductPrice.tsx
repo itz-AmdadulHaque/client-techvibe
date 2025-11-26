@@ -31,7 +31,7 @@ export default function ProductPrice({ product }: { product: Product }) {
     return (
         <div >
             {/* <Image src="/taka.png" alt="Taka symbol" width={20} height={20} /> */}
-            <p className="text-lg font-semibold ">{product.price}<span className="bangla-font font-semibold"></span></p>
+            <p className="text-lg font-semibold ">{product.price}<span className="bangla-font font-semibold">৳</span></p>
         </div>
     );
 }
