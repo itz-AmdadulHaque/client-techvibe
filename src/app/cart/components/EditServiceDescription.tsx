@@ -29,15 +29,14 @@ const EditServiceDescription = ({
     mutationKey: ["updateCartService"],
     mutationFn: updateCart,
     onSuccess: () => {
-      toast.success("Service item updated", { position: "top-center" });
+      toast.success("Service item updated", { position: "bottom-center" });
       queryClient.invalidateQueries({ queryKey: ["cartInfo"] });
-      setDescription("");
       setOpen(false);
     },
     onError: (error: { response: { data: { message: string } } }) => {
       const errorMessage =
         error?.response?.data?.message || "An unexpected error occurred";
-      toast.error(errorMessage, { position: "top-center" });
+      toast.error(errorMessage, { position: "bottom-center" });
       console.error("Update failed:", error);
     },
   });
