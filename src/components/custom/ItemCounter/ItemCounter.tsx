@@ -1,12 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { DependencyList } from 'react'; // Retain for now, just in case
-
-// --- Utility Type and Hook (REMOVED) ---
-// We remove useDebouncedEffect since the parent will handle debounce.
-
-// --- Component Props and Definition ---
 
 interface CounterProps {
   value: number; // ✨ REQUIRED: Always pass the controlled value from the parent
@@ -45,22 +38,24 @@ export default function ItemCounter({
 
   return (
     <div 
-      className={`flex items-center border-2 border-gray-300 w-32 rounded-lg ${
+      className={`flex items-center gap-3 border-1 border-gray-300 rounded-sm ${
         isAnyControlDisabled ? 'opacity-50 cursor-not-allowed' : '' 
       }`}
     >
       <Button
-        variant="outline"
+        variant="ghost"
+        className='h-6 w-8 text-bold rounded-sm'
         onClick={() => updateCount(count - 1)}
         disabled={isDecrementDisabled}
       >
         -
       </Button>
-      <span className="w-12 h-full text-center flex items-center justify-center font-semibold">
+      <p className="font-semibold">
         {count}
-      </span>
+      </p>
       <Button
-        variant="outline"
+        variant="ghost"
+        className='h-6 w-6 rounded-sm text-bold'
         onClick={() => updateCount(count + 1)}
         disabled={isIncrementDisabled}
       >

@@ -11,7 +11,7 @@ import {
   ProductRequestCartItemType,
   ServiceItemType,
 } from "@/Types/ComponentTypes";
-import { Minus, Plus } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import React, { useState, useMemo } from "react";
 import ProductItemBox from "./components/ProductItemBox";
 import ServiceItemBox from "./components/ServiceItemBox";
@@ -126,26 +126,26 @@ const Cart = () => {
         {/* no item added card */}
         <div className="col-span-3">
           {isCartEmpty && (
-              <div className="col-span-3">
-                <p className="text-xl border px-6 py-4 w-full text-left rounded-md bg-muted mt-6">
-                  Your cart is empty
-                </p>
-              </div>
-            )}
+            <div className="col-span-3">
+              <p className="text-xl border px-6 py-4 w-full text-left rounded-md bg-muted mt-6">
+                Your cart is empty
+              </p>
+            </div>
+          )}
 
           {/* product */}
           {products.length > 0 && (
             <Collapsible
               open={productOpen}
               onOpenChange={setProductOpen}
-              className="border px-6 py-4 w-full text-left rounded-md bg-muted mt-6"
+              className="border px-6 py-4 w-full text-left rounded-sm bg-muted mt-6"
             >
               <CollapsibleTrigger className="w-full text-xl font-semibold flex justify-between mb-2">
-                <p>Products</p>
+                <p>{`Products (${products?.length})`}</p>
                 {productOpen ? (
-                  <Minus strokeWidth={2.5} />
+                  <ChevronUp strokeWidth={2.5} />
                 ) : (
-                  <Plus strokeWidth={2.5} />
+                  <ChevronDown strokeWidth={2.5} />
                 )}
               </CollapsibleTrigger>
               <CollapsibleContent>
@@ -171,9 +171,9 @@ const Cart = () => {
               <CollapsibleTrigger className="w-full text-xl font-semibold flex justify-between mb-2">
                 <p>Services</p>
                 {serviceOpen ? (
-                  <Minus strokeWidth={2.5} />
+                  <ChevronUp strokeWidth={2.5} />
                 ) : (
-                  <Plus strokeWidth={2.5} />
+                  <ChevronDown strokeWidth={2.5} />
                 )}
               </CollapsibleTrigger>
               <CollapsibleContent>
@@ -194,9 +194,9 @@ const Cart = () => {
               <CollapsibleTrigger className="w-full text-xl font-semibold flex justify-between mb-2">
                 <p>Product Requests</p>
                 {productRequestOpen ? (
-                  <Minus strokeWidth={2.5} />
+                  <ChevronUp strokeWidth={2.5} />
                 ) : (
-                  <Plus strokeWidth={2.5} />
+                  <ChevronDown strokeWidth={2.5} />
                 )}
               </CollapsibleTrigger>
               <CollapsibleContent>
@@ -368,8 +368,8 @@ const Cart = () => {
 
             <div className="mt-6 p-3 border rounded-md text-muted-foreground text-sm">
               We will contact you within{" "}
-              <span className="font-semibold">24 to 48 hours</span>{" "}
-              regarding your order details and confirmation.
+              <span className="font-semibold">24 to 48 hours</span> regarding
+              your order details and confirmation.
             </div>
           </div>
         </div>
