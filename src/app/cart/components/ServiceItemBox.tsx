@@ -8,6 +8,7 @@ import Image from "next/image";
 import React from "react";
 import { toast } from "sonner";
 import EditServiceDescription from "./EditServiceDescription";
+import { X } from "lucide-react";
 
 const ServiceItemBox = ({ service }: { service: ServiceItemType }) => {
   const axiosPrivate = useAxiosPrivate();
@@ -33,47 +34,45 @@ const ServiceItemBox = ({ service }: { service: ServiceItemType }) => {
   });
 
   return (
-    <div className="border p-3 rounded-md my-3 bg-white flex flex-wrap gap-5 items-center relative group">
-      <Image
-        height={70}
-        width={70}
-        className="w-20 h-20 object-contain"
-        src={`${process.env.NEXT_PUBLIC_IMAGE_SERVER}/${service.service.images[0].image}`}
-        alt={service.service.title}
-      />
+    <div className="text-wrap p-1 px-1.5 border rounded-sm flex flex-col md:flex-row md:items-center gap-3 w-full bg-white shadow-sm mb-1">
+      <section className="md:flex-1 flex flex-row md:justify-start items-start gap-3">
+        {/* Product Image */}
+        <Image
+          height={70}
+          width={70}
+          className="w-12 h-12 mt-1 object-contain rounded-md bg-gray-50"
+          src={`${process.env.NEXT_PUBLIC_IMAGE_SERVER}/${service.service.images[0].image}`}
+          alt={service.service.title}
+        />
 
-      <div>
-        <h2 className="text-xl font-semibold">{service.service.title}</h2>
+        <div className="">
+          <h2 className="text-lg font-semibold">{service.service.title}</h2>
 
-        {service.service.price ? (
-          <p className="text-md mt-4 flex items-center gap-1">
-            <Image src="/taka.png" alt="Taka symbol" width={15} height={15} />
-
-            <span>{service.service.price}</span>
+          <p className="text-sm mt-1 flex items-center">
+            <span className="bangla-font">
+              {service.service.price
+                ? `${service.service.price}`
+                : "Price on Request"}
+            </span>
           </p>
-        ) : (
-          <p className="text-md mt-4 text-muted-foreground">Price on Request</p>
-        )}
-      </div>
+        </div>
+      </section>
 
-      <div className="border text-sm relative p-3 rounded-md min-w-56">
-        <span className="absolute -top-2 left-3 bg-white px-1 text-xs text-gray-600">
-          Description
-        </span>
-        <p>{service.description}</p>
+      <section className=" flex md:flex-col gap-2 justify-between md:justify-end md:items-end">
+        {/* Remove Button — push to bottom-left on mobile */}
+        <button
+          type="button"
+          onClick={() => removeProductItem()}
+          className="md:mt-0 mt-auto bg-red-500 hover:bg-red-600 text-white p-1.5 rounded-sm w-10 h-5 flex items-center justify-center transition"
+        >
+          <X className="w-4 h-4" />
+        </button>
+
         <EditServiceDescription
           id={service.id}
           serviceDescription={service.description}
         />
-      </div>
-
-      <button
-        type="button"
-        onClick={() => removeProductItem()}
-        className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
-      >
-        ✕
-      </button>
+      </section>
     </div>
   );
 };
