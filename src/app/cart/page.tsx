@@ -169,7 +169,7 @@ const Cart = () => {
               className="border px-6 py-4 w-full text-left rounded-md bg-muted mt-6"
             >
               <CollapsibleTrigger className="w-full text-xl font-semibold flex justify-between mb-2">
-                <p>Services</p>
+                <p>{`Booked Services (${services?.length})`}</p>
                 {serviceOpen ? (
                   <ChevronUp strokeWidth={2.5} />
                 ) : (

@@ -38,7 +38,7 @@ export default function ItemCounter({
 
   return (
     <div 
-      className={`flex items-center gap-3 border-1 border-gray-300 rounded-sm ${
+      className={`flex items-center gap-3 border-1 w-max border-gray-300 rounded-sm ${
         isAnyControlDisabled ? 'opacity-50 cursor-not-allowed' : '' 
       }`}
     >
