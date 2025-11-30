@@ -23,8 +23,7 @@ export async function getServices(params: {
     if (params.category) query.set("category", params.category);
 
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/services?${query.toString()}`,
-        { cache: "no-store" }
+        `${process.env.NEXT_PUBLIC_BASE_URL}/services?${query.toString()}`
     );
     if (!res.ok) throw new Error("Failed to fetch services");
 

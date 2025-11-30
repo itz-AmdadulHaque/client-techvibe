@@ -23,8 +23,7 @@ export async function getConsultants(params: {
     if (params.category) query.set("category", params.category);
 
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/consultants?${query.toString()}`,
-        { cache: "no-store" }
+        `${process.env.NEXT_PUBLIC_BASE_URL}/consultants?${query.toString()}`
     );
     if (!res.ok) throw new Error("Failed to fetch consultants");
 

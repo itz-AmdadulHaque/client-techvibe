@@ -1,13 +1,7 @@
-// app/services/service-list.tsx
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { getCategories, getServices } from "./apiCalls";
 import { ServiceType } from "@/Types/Types";
-import Image from "next/image";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import ServicesFilterForm from "./ServicesFilter";
 import CustomPagination from "@/components/custom/Pagination/Pagination";
-import AddToCart from "@/components/custom/AddToCart/AddToCart";
 import ServiceCard from "@/components/custom/ServiceCard/ServiceCard";
 
 export async function ServiceList({
