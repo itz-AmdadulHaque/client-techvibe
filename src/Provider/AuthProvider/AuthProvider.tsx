@@ -3,6 +3,7 @@
 import type { Auth } from "@/Types/Types";
 import { AuthContext } from "./auth-context";
 import { useState, type ReactNode } from "react";
+import { queryClient } from "@/Provider/ReactQueryClientProvider";
 
 const initialState = { user: null, accessToken: null, isLoading: true };
 
@@ -18,6 +19,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       isLoading: false,
     });
     setIsLoading(false);
+    queryClient.invalidateQueries({ queryKey: ["cartInfo"] })
     // router.push("/")
   };
 

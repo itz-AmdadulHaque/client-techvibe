@@ -25,7 +25,7 @@ export default function NavUser() {
       logOut();
     } catch (error) {
       toast.error(generateErrorMessage(error));
-    }
+    } finally { window.location.reload(); }
   };
   return (
     <DropdownMenu>
@@ -34,7 +34,7 @@ export default function NavUser() {
           <AvatarImage
             src={`${process.env.NEXT_PUBLIC_IMAGE_SERVER}/${auth?.user?.image}` || undefined}
             alt={`${auth?.user?.firstName} ${auth?.user?.lastName}`}
-            
+
           />
           <AvatarFallback>
             {auth?.user?.firstName?.[0]}
