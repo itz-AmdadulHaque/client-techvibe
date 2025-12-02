@@ -80,10 +80,17 @@ export function NavbarDrawer({ navItems }: { navItems: NavItemType[] }) {
           )}
 
           <div className="flex items-center justify-around mt-4">
-            <Link href="/cart" onClick={closeSheet}>
+
+            <Link
+              href="/cart"
+              className="w-full text-lg text-left flex items-center gap-2"
+              onClick={closeSheet}
+            >
               <ShoppingCart className="h-6 w-6 text-gray-600 dark:text-gray-300 cursor-pointer" />
+              Cart
             </Link>
-            <ModeToggle />
+
+            {/* <ModeToggle /> */}
           </div>
         </div>
       </SheetContent>

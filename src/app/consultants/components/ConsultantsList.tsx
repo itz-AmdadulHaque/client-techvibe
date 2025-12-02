@@ -89,7 +89,7 @@ export async function ConsultantList({
                 ))}
             </div>
 
-            {/* Pagination */}
+
             <CustomPagination
                 currentPage={data.pagination.currentPage}
                 totalPages={data.pagination.totalPages || 1}

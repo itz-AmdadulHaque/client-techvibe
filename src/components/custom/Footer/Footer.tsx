@@ -29,7 +29,7 @@ export default function Footer() {
                 {/* Main Grid - 3 Columns */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
                     {/* Left Grid - Company Info & Contact */}
-                    <div className="space-y-8">
+                    <div className="space-y-5">
                         {/* Company Logo & Info */}
                         <div className="flex items-start space-x-4">
                             <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 overflow-hidden">
@@ -56,6 +56,7 @@ export default function Footer() {
                             Transform your engineering challenges into innovative solutions
                             with our expert team.
                         </p>
+                        <Link href="/about" className="text-lg font-semibold text-white flex items-center hover:text-blue-400 transition-colors">About Us</Link>
 
                         {/* Contact Information */}
                         <div className="space-y-4">
