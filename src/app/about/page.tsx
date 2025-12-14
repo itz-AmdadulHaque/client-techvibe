@@ -161,7 +161,7 @@ const About = () => {
 
                     <div className='text-center'>
                         <h2
-                            id="about-heading"
+                            id="about-heading "
                             className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
                         >
                             Our Digital Partner
