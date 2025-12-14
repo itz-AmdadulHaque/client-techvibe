@@ -1,69 +1,63 @@
 "use client";
 import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
+import Fade from "embla-carousel-fade";
 import Image from "next/image";
 import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselApi,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { BannerType } from "@/Types/Types";
 import Link from "next/link";
 
 export default function PromoCarousel({ banners }: { banners: BannerType[] }) {
-    const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [current, setCurrent] = React.useState(0);
 
-    return (
-       <div className="relative w-full max-w-8xl mx-auto mt-4 p-4">
-      {/* Gradient fade edges */}
-      <div className="pointer-events-none absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-background via-background/70 to-transparent z-10" />
-      <div className="pointer-events-none absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-background via-background/70 to-transparent z-10" />
+  React.useEffect(() => {
+    if (!api) return;
 
+    setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  return (
+    <div className="container mx-auto py-4 pt-1">
       <Carousel
-        plugins={[plugin.current]}
+        setApi={setApi}
+        plugins={[Autoplay({ delay: 4000, stopOnInteraction: true }), Fade()]}
         opts={{
           loop: true,
-          align: "center",
-          skipSnaps: false,
           duration: 30,
-          dragFree: false,
         }}
-        onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.reset}
         className="w-full"
       >
-        <CarouselContent className="-ml-8 gap-8">
+        <CarouselContent>
           {banners.map((banner) => {
             const BannerContent = (
-              <div className="relative aspect-[16/9] overflow-hidden rounded-2xl shadow-lg group transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-[1.02]">
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_IMAGE_SERVER}/${banner.image}`}
-                  alt={banner.title}
-                  fill
-                  className="object-cover"
-                />
-                
+              <div className="relative aspect-[11/4] overflow-hidden rounded-sm shadow-lg border-1 border-black/35">
+                <div className="relative w-full h-full  overflow-hidden bg-white">
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_SERVER}/${banner.image}`}
+                    alt={banner.title}
+                    fill
+                    className="object-cover object-center"
+                  />
+                </div>
               </div>
             );
 
             return (
-              <CarouselItem
-                key={banner.id}
-                className="
-                  pl-8
-                  basis-[100%]
-                  sm:basis-[90%]
-                  md:basis-[80%]
-                  lg:basis-[70%]
-                  xl:basis-[65%]
-                "
-              >
+              <CarouselItem key={banner.id} className="basis-full">
                 {banner.link ? (
-                  <Link href={banner.link}>
-                    {BannerContent}
-                  </Link>
+                  <Link href={banner.link}>{BannerContent}</Link>
                 ) : (
                   BannerContent
                 )}
@@ -72,10 +66,23 @@ export default function PromoCarousel({ banners }: { banners: BannerType[] }) {
           })}
         </CarouselContent>
 
-        <CarouselPrevious className="absolute -left-3 top-1/2 z-20 -translate-y-1/2" />
-        <CarouselNext className="absolute -right-3 top-1/2 z-20 -translate-y-1/2" />
+        <CarouselPrevious className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 bg-slate-900 hover:bg-black text-white hover:text-white border-0 h-12 w-10 rounded-full rounded-l-none" />
+        <CarouselNext className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 bg-slate-900 hover:bg-black text-white hover:text-white border-0 h-12 w-10 rounded-full rounded-r-none" />
+
+        {/* Indicators */}
+        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          {banners.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => api?.scrollTo(index)}
+              className={`h-1 sm:h-2 rounded-full transition-all bg-white shadow-sm ${
+                index === current ? "w-4 sm:w-8" : "w-1 sm:w-2"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
       </Carousel>
     </div>
-
-    );
+  );
 }

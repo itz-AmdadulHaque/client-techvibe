@@ -96,7 +96,7 @@ export default function RootLayout({
               <AuthProvider>
 
                 <Navbar />
-                <main className="min-h-[calc(100vh-80px)]">
+                <main className="min-h-[calc(100vh-80px)] px-2 lg:px-0">
                   {children}
                 </main>
                 <Footer />

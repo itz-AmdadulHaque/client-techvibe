@@ -23,7 +23,7 @@ export default async function Home() {
     } = data.data;
 
     return (
-      <div className="container mx-auto mt-4 px-1 sm:px-0">
+      <div className="container mx-auto mt-4">
         <PromoCarousel banners={banners} />
         <HomepageProducts products={featuredProducts} title="Featured Products" />
         <HomepageServices services={featuredServices} title="Services" />
