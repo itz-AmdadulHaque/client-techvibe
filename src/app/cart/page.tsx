@@ -39,6 +39,7 @@ import { useRouter } from "next/navigation";
 import ProductRequestItemBox from "./components/ProductRequestItemBox";
 import { LoadingOverlay } from "@/components/custom/LoadingOverlay/LoadingOverlay";
 import AuthCheck from "@/components/custom/AuthCheck";
+import { queryClient } from "@/Provider/ReactQueryClientProvider";
 
 const Cart = () => {
   const { data: cartInfo } = useCartInfo();
@@ -80,6 +81,7 @@ const Cart = () => {
     mutationFn: submitOrder,
     onSuccess: () => {
       toast.success("Order submitted", { position: "top-center" });
+      queryClient.invalidateQueries({ queryKey: ["cartInfo"] });
 
       router.push("/profile?tab=orders");
     },
