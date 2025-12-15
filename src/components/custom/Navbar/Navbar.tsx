@@ -24,7 +24,6 @@ import {
 import { NavbarDrawer } from "./NavbarDrawer";
 import { NavItemType } from "@/Types/ComponentTypes";
 import SearchBar from "./SearchBar";
-import ModeToggle from "@/components/theme/mode-toggler";
 import Image from "next/image";
 import CartInfo from "../CartInfo/CartInfo";
 import { Suspense, useContext } from "react";
