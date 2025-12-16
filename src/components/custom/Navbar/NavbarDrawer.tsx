@@ -1,5 +1,5 @@
 "use client";
-import ModeToggle from "@/components/theme/mode-toggler";
+
 import { Button } from "@/components/ui/button";
 import {
   Collapsible,

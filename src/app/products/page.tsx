@@ -4,15 +4,7 @@ import { fetchData } from "@/lib/fetchFunction";
 import CustomPagination from "@/components/custom/Pagination/Pagination";
 import ProductCard from "@/components/custom/ProductCard/ProductCard";
 import { Metadata } from "next";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { ListFilterPlus } from "lucide-react";
+import FilterSheet from "./components/FilterSheet";
 
 interface SearchPageProps {
   searchParams: Promise<{
@@ -67,34 +59,16 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const products = data.data.products || [];
 
   return (
-    <div className="container mx-auto p-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
+    <div className="container mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
       <div className="hidden lg:block lg:col-span-1">
-        <SearchFilters initialFilters={filters} />
+        <SearchFilters initialFilters={filters}  />
       </div>
       <div className="lg:col-span-3 ">
-        <div className="font-bold bg-gray-200 dark:bg-gray-800 p-2 px-4 my-4 rounded-md flex justify-between items-center">
+        <div className="font-bold bg-gray-200 dark:bg-gray-800 my-4 rounded-md flex justify-between items-center">
           <p>Found Products ({products.length})</p>
 
-          <Sheet>
-            <SheetTrigger className="lg:hidden" asChild>
-              <Button
-                variant="default"
-                size="icon"
-                className="bg-transparent p-2 border-1 border-black hover:bg-slate-300 text-black w-max h-max"
-              >
-                Filter <ListFilterPlus />
-              </Button>
-            </SheetTrigger>
-
-            <SheetContent side="left" className="w-4/5">
-              <SheetHeader>
-                <SheetTitle asChild>
-                  <h3 className="text-2xl font-semibold">Filter Products</h3>
-                </SheetTitle>
-              </SheetHeader>
-              <SearchFilters initialFilters={filters} />
-            </SheetContent>
-          </Sheet>
+          {/* filer sheet component */}
+          <FilterSheet filters={filters} />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

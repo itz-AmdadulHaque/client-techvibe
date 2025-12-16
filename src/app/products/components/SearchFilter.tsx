@@ -27,8 +27,10 @@ interface Filters {
 
 export default function SearchFilters({
   initialFilters,
+  handleClose,
 }: {
   initialFilters: Filters;
+  handleClose?: () => void;
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -111,6 +113,10 @@ export default function SearchFilters({
     // Always reset page to 1 when filters change
     params.delete("page");
 
+    // for mobile sheet close after apply
+    if (handleClose) {
+      handleClose();
+    }
     router.push(`${pathname}?${params.toString()}`);
   };
 
@@ -207,7 +213,7 @@ export default function SearchFilters({
   );
 
   return (
-    <div className="relative space-y-2 shadow-md p-2 rounded-lg h-full flex flex-col">
+    <div className="relative space-y-2 shadow-md rounded-lg h-full flex flex-col">
       <div className="flex-grow space-y-2 overflow-y-auto pr-2">
         {/* price range */}
         {renderCollapsible(
@@ -291,28 +297,31 @@ export default function SearchFilters({
           ))
         )}
 
-        {renderCollapsible(
-          "Subcategory",
-          "subCategory",
-          categories
-            .filter((c: CategoryType) =>
-              filters.category.length ? filters.category.includes(c.slug) : true
-            )
-            .flatMap(
-              (c: CategoryType) =>
-                c.subCategories.map((sub) => (
-                  <div key={sub.slug} className="flex items-center space-x-2">
-                    <Checkbox
-                      checked={filters.subCategory.includes(sub.slug)}
-                      onCheckedChange={() =>
-                        handleCheckbox("subCategory", sub.slug)
-                      }
-                    />
-                    <label>{sub.title}</label>
-                  </div>
-                )) || []
-            )
-        )}
+        {filters.category.length > 0 &&
+          renderCollapsible(
+            "Sub Category",
+            "subCategory",
+            categories
+              .filter((c: CategoryType) =>
+                filters.category.length
+                  ? filters.category.includes(c.slug)
+                  : true
+              )
+              .flatMap(
+                (c: CategoryType) =>
+                  c.subCategories.map((sub) => (
+                    <div key={sub.slug} className="flex items-center space-x-2">
+                      <Checkbox
+                        checked={filters.subCategory.includes(sub.slug)}
+                        onCheckedChange={() =>
+                          handleCheckbox("subCategory", sub.slug)
+                        }
+                      />
+                      <label>{sub.title}</label>
+                    </div>
+                  )) || []
+              )
+          )}
         <div className="h-16"></div>
       </div>
 
