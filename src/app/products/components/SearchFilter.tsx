@@ -213,8 +213,8 @@ export default function SearchFilters({
   );
 
   return (
-    <div className="relative space-y-2 shadow-md rounded-lg h-full flex flex-col">
-      <div className="flex-grow space-y-2 overflow-y-auto pr-2">
+    <div className="relative space-y-2 shadow-md p-2 rounded-lg h-full flex flex-col">
+      <div className="flex-grow space-y-2 overflow-y-auto pr-2 pb-20">
         {/* price range */}
         {renderCollapsible(
           "Price Range",
@@ -322,11 +322,10 @@ export default function SearchFilters({
                   )) || []
               )
           )}
-        <div className="h-16"></div>
       </div>
 
-      {/* apply and clear filter */}
-      <div className="sticky bottom-0 left-0 right-0 p-2 -mx-2 bg-background/95 backdrop-blur-sm border-t border-gray-200 flex flex-wrap gap-3 justify-between shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
+      {/* apply and clear filter - now properly sticky */}
+      <div className="sticky bottom-0 left-0 right-0 p-3 bg-white/70 backdrop-blur-md border-t border-gray-200 flex gap-3 shadow-[0_-5px_15px_rgba(0,0,0,0.1)]">
         <Button onClick={applyFilters} className="flex-1">
           Apply Filter
         </Button>

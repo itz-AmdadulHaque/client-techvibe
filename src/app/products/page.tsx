@@ -59,12 +59,12 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const products = data.data.products || [];
 
   return (
-    <div className="container mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
+    <div className="container pt-4 mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
       <div className="hidden lg:block lg:col-span-1">
         <SearchFilters initialFilters={filters}  />
       </div>
       <div className="lg:col-span-3 ">
-        <div className="font-bold bg-gray-200 dark:bg-gray-800 my-4 rounded-md flex justify-between items-center">
+        <div className="font-bold p-2 px-4 bg-gray-200 dark:bg-gray-800 my-4 rounded-md flex justify-between items-center">
           <p>Found Products ({products.length})</p>
 
           {/* filer sheet component */}

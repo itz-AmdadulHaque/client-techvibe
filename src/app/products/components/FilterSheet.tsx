@@ -40,10 +40,10 @@ function FilterSheet({filters}: { filters: Filters }) {
         </Button>
       </SheetTrigger>
 
-      <SheetContent side="left" className="w-4/5">
+      <SheetContent side="left" className="w-4/5 pl-2">
         <SheetHeader>
           <SheetTitle asChild>
-            <h3 className="text-2xl font-semibold">Filter Products</h3>
+            <h3 className="text-2xl py-3 font-semibold">Filter Products</h3>
           </SheetTitle>
         </SheetHeader>
         <SearchFilters initialFilters={filters} handleClose={handleClose} />
