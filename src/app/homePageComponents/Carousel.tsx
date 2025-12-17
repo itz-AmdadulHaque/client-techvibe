@@ -47,6 +47,7 @@ export default function PromoCarousel({ banners }: { banners: BannerType[] }) {
                   <Image
                     src={`${process.env.NEXT_PUBLIC_IMAGE_SERVER}/${banner.image}`}
                     alt={banner.title}
+                    priority
                     fill
                     className="object-cover object-center"
                   />

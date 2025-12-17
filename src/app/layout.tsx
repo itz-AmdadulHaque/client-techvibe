@@ -76,7 +76,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${candal.variable} ${notoSerifBengali.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${candal.variable} ${notoSerifBengali.variable} !scroll-smooth`}>
 
       <head>
         <link rel="icon" href="/logo.png" sizes="any" />
