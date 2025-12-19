@@ -12,7 +12,6 @@ import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { customerSchema, CustomerSchema } from "../../validators/customer.validation";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
@@ -21,9 +20,6 @@ import { axiosPrivate } from "@/config/axios";
 import { toast } from "sonner";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
-
-
-
 
 export default function SignUp() {
     const form = useForm<CustomerSchema>({
@@ -91,9 +87,6 @@ export default function SignUp() {
         }
     );
 
-
-
-
     const onSubmit = (data: CustomerSchema) => {
         mutate(data); // ✅ use mutation
     };
@@ -102,12 +95,11 @@ export default function SignUp() {
     return (
         <div className="container mx-auto p-4 flex justify-center items-center min-h-screen">
 
-            <Card className="w-full max-w-2xl my-12">
+            <Card className="w-full max-w-2xl">
                 <CardHeader>
                     <CardTitle className="text-2xl font-bold">Sign Up</CardTitle>
                 </CardHeader>
                 <CardContent>
-
 
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 grid md:grid-cols-2 gap-4 my-4">

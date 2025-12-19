@@ -27,8 +27,8 @@ export function NavbarDrawer({ navItems }: { navItems: NavItemType[] }) {
   return (
     <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
       <SheetTrigger asChild className="lg:hidden">
-        <Button size="icon" className="border h-8 w-8 rounded-md dark:border dark:bg-transparent dark:border-white">
-          <Menu color="white" className="size-6" />
+        <Button size="icon" className="bg-transparent text-black border h-8 w-8 rounded-md dark:border dark:bg-transparent dark:border-white">
+          <Menu  className="size-6" />
         </Button>
       </SheetTrigger>
 

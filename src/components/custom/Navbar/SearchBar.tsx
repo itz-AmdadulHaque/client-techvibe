@@ -32,12 +32,6 @@ export default function SearchBar() {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-  };
-
   return (
     <div className="flex gap-1 items-center">
       <Input
@@ -46,7 +40,6 @@ export default function SearchBar() {
         placeholder="Search Products..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        onKeyDown={handleKeyDown}
         className={cn(
           "ml-3 p-2 min-w-28 max-w-96",
           "focus:ring-0 focus:ring-offset-0 focus:border-white focus:outline-none border border-gray-300 dark:border-gray-700"
@@ -55,9 +48,9 @@ export default function SearchBar() {
       <Button
         onClick={handleSearch}
         className={cn(
-          "border h-8 w-8 rounded-md dark:border dark:bg-transparent dark:border-white text-white",
+          "border rounded-md dark:border dark:bg-transparent dark:border-white text-white",
           query &&
-            "text-green-500 border border-green-500 dark:border-green-500 animate-pulse"
+            " animate-pulse"
         )}
         size="icon"
       >

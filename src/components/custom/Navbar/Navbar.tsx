@@ -84,8 +84,13 @@ export default function Navbar() {
       icon: <Home size={20} />,
     },
     {
-      label: "Request Product",
-      href: "/request-product",
+      label: "Services",
+      href: "/services",
+      icon: <Wrench  size={20} />,
+    },
+    {
+      label: "Products",
+      href: "/products",
       icon: <Package2 size={20} />,
     },
   ];
@@ -109,7 +114,7 @@ export default function Navbar() {
     <>
       {/* Desktop Top Navbar */}
       <nav className="shadow-md fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-700">
-        <div className="flex justify-between items-center px-2 lg:px-3 py-4 container mx-auto">
+        <div className="flex justify-between items-center px-2 lg:px-3 py-2 container mx-auto">
           <Link href="/" className="flex items-center gap-2 md:gap-4">
             <Image
               src="/logo.png"
@@ -198,7 +203,7 @@ export default function Navbar() {
               </Suspense>
             </div>
 
-            <CartInfo className="hidden lg:block" />
+            <CartInfo className="hidden md:block" />
 
             {/* <div className="hidden lg:block">
               <ModeToggle />
@@ -225,14 +230,14 @@ export default function Navbar() {
 
       {/* Mobile Bottom Navbar */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] border-t z-50">
-        <ul className="flex justify-around items-center py-2">
+        <ul className="flex justify-center gap-6 items-center py-2">
           {bottomNavItems.map((item) => (
             <li key={item.label}>
               <Link
                 href={item.href || "#"}
                 className={cn(
                   "flex flex-col items-center text-xs",
-                  pathname === item.href ? "text-blue-600" : "text-gray-500"
+                  pathname === item.href ? "text-red-500" : "text-black"
                 )}
               >
                 {item.icon}
@@ -250,21 +255,6 @@ export default function Navbar() {
             <CartInfo className="" />
             Cart
           </li>
-
-          {auth?.user && (
-            <li>
-              <Link
-                href="/profile"
-                className={cn(
-                  "flex flex-col items-center text-xs",
-                  pathname === "/profile" ? "text-blue-600" : "text-gray-500"
-                )}
-              >
-                <User />
-                Account
-              </Link>
-            </li>
-          )}
 
           <li></li>
         </ul>
