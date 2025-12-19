@@ -167,7 +167,6 @@ export default function Navbar() {
                   <Link
                     key={item.label}
                     href={item.href!}
-                    scroll={true}
                     className={cn(
                       "group relative transition-colors duration-300",
                       "text-base font-normal px-1 py-2",
@@ -210,12 +209,6 @@ export default function Navbar() {
             ) : (
               <Link
                 href="/login"
-                onClick={() =>
-                  window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
-                  })
-                }
                 className={cn(
                   "border p-1 px-2 rounded-md hover:text-red-500 hover:border-red-500 dark:text-white dark:border-white",
                   pathname === "login" && "text-red-500 border-red-500"

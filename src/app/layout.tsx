@@ -10,6 +10,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Candal } from "next/font/google";
 import Footer from "@/components/custom/Footer/Footer";
 import { DataProvider } from "@/Provider/DataProvider/DataProvider";
+import ScrollToTop from "@/components/custom/Navbar/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -76,7 +77,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${candal.variable} ${notoSerifBengali.variable} !scroll-smooth`}>
+    <html lang="en" suppressHydrationWarning className={`${candal.variable} ${notoSerifBengali.variable}`}>
 
       <head>
         <link rel="icon" href="/logo.png" sizes="any" />
@@ -96,6 +97,7 @@ export default function RootLayout({
               <AuthProvider>
 
                 <Navbar />
+                <ScrollToTop />
                 <main className="min-h-[calc(100vh-80px)] px-2 lg:px-0">
                   {children}
                 </main>
