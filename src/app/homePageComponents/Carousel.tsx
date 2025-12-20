@@ -29,7 +29,7 @@ export default function PromoCarousel({ banners }: { banners: BannerType[] }) {
   }, [api]);
 
   return (
-    <div className="container mx-auto py-4 pt-1">
+    <div className="container mx-auto">
       <Carousel
         setApi={setApi}
         plugins={[Autoplay({ delay: 4000, stopOnInteraction: true }), Fade()]}

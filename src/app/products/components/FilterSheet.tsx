@@ -22,14 +22,9 @@ interface Filters {
 }
 
 function FilterSheet({filters}: { filters: Filters }) {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const handleClose = () => {
-        setIsOpen(false);
-    };
 
   return (
-    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+    <Sheet>
       <SheetTrigger className="lg:hidden" asChild>
         <Button
           variant="default"
@@ -46,7 +41,7 @@ function FilterSheet({filters}: { filters: Filters }) {
             <h3 className="text-xl font-semibold">Filter Products</h3>
           </SheetTitle>
         </SheetHeader>
-        <SearchFilters initialFilters={filters} handleClose={handleClose} />
+        <SearchFilters initialFilters={filters} isInSheet={true} />
       </SheetContent>
     </Sheet>
   );
