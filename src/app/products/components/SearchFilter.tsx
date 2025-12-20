@@ -158,6 +158,9 @@ export default function SearchFilters({
     params.delete("page");
 
     router.push(`${pathname}?${params.toString()}`);
+    if (handleClose) {
+      handleClose();
+    }
   };
 
   const clearPriceFilter = () => {
@@ -171,8 +174,10 @@ export default function SearchFilters({
     if (!params.get("limit")) params.set("limit", "20");
     params.delete("page");
 
-    setPriceRange([0, 1000000]);
-
+    setPriceRange([0, 0]);
+    if (handleClose) {
+      handleClose();
+    }
     router.push(
       `/products?search=${encodeURIComponent(
         filters.name
@@ -189,6 +194,9 @@ export default function SearchFilters({
 
     // setPriceRange([0, 1000000])
     router.push(`/products?search=${encodeURIComponent(filters.name)}`);
+    if (handleClose) {
+      handleClose();
+    }
   };
 
   const renderCollapsible = (
@@ -253,7 +261,7 @@ export default function SearchFilters({
                 size="sm"
                 onClick={applyPriceFilter}
               >
-                Filter Range
+                Apply Range
               </Button>
 
               <Button
