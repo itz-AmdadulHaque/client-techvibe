@@ -1,17 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-
 import useAuth from "@/hooks/useAuth";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { queryClient } from "@/Provider/ReactQueryClientProvider";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import React, { useState } from "react";
+import React from "react";
 import { LoadingOverlay } from "../LoadingOverlay/LoadingOverlay";
-import { DialogTitle } from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 
 const AddToCart = ({
@@ -41,8 +38,6 @@ const AddToCart = ({
   const { auth } = useAuth();
   const router = useRouter();
 
-  const [open, setOpen] = useState(false);
-  const [description, setDescription] = useState("");
 
   const handleAddToCart = async ({
     id,
@@ -75,11 +70,9 @@ const AddToCart = ({
     mutationKey: ["addToCart"],
     mutationFn: handleAddToCart,
     onSuccess: (data) => {
-      toast.success(data.message, { position: "top-center" });
+      toast.success(data.message, { position: "bottom-right" });
       queryClient.setQueryData(["cartInfo"], () => data.data);
       successResponse?.();
-      setOpen(false);
-      setDescription("");
     },
     onError: (error: {
       response?: { data?: { message?: string } };
@@ -89,44 +82,10 @@ const AddToCart = ({
         error?.response?.data?.message ||
         error?.message ||
         "An unexpected error occurred";
-      toast.error(errorMessage, { position: "top-center" });
+      toast.error(errorMessage, { position: "bottom-right" });
     },
   });
 
-  if (type === "service") {
-    return (
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button
-            variant={variant}
-            disabled={isPending}
-            className={cn("rounded-sm", className)}
-          >
-            {isPending ? "ADDING..." : "ADD TO CART"}
-          </Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogTitle>Add Service</DialogTitle>
-          {/* <h3 className="text-lg font-semibold"></h3> */}
-          <textarea
-            placeholder="Write description for this service..."
-            value={description}
-            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-              setDescription(e.target.value)
-            }
-            className="mt-2 p-2"
-          />
-          <Button
-            onClick={() => addToCart({ id, type, count, description })}
-            className={cn("mt-3 w-full rounded-sm", className)}
-            disabled={isPending}
-          >
-            {isPending ? "ADDING..." : "CONFIRM & ADD"}
-          </Button>
-        </DialogContent>
-      </Dialog>
-    );
-  }
 
   return (
     <Button
@@ -135,7 +94,7 @@ const AddToCart = ({
       disabled={isPending}
       className={cn("rounded-sm", className)}
     >
-      {isPending ? "ADDING..." : "ADD TO CART"}
+      {isPending ? "ADDING..." : type !=="service" ? "ADD TO CART" : "Book Now"}
 
       <LoadingOverlay blur visible={isPending} />
     </Button>

@@ -80,7 +80,7 @@ const Cart = () => {
     mutationKey: ["confirmOrder"],
     mutationFn: submitOrder,
     onSuccess: () => {
-      toast.success("Order submitted", { position: "top-center" });
+      toast.success("Order submitted", { position: "bottom-right" });
       queryClient.invalidateQueries({ queryKey: ["cartInfo"] });
 
       router.push("/profile?tab=orders");
@@ -88,7 +88,7 @@ const Cart = () => {
     onError: (error: { response: { data: { message: string } } }) => {
       const errorMessage =
         error?.response?.data?.message || "An unexpected error occurred";
-      toast.error(errorMessage, { position: "top-center" });
+      toast.error(errorMessage, { position: "bottom-right" });
       console.error("Update failed:", error);
     },
   });

@@ -10,7 +10,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { ListFilterPlus } from "lucide-react";
 import SearchFilters from "./SearchFilter";
-import { useState } from "react";
 
 interface Filters {
   name: string;

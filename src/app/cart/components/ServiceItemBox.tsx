@@ -22,13 +22,13 @@ const ServiceItemBox = ({ service }: { service: ServiceItemType }) => {
     mutationKey: ["removeCartItem"],
     mutationFn: removeItem,
     onSuccess: () => {
-      toast.success("Item removed", { position: "top-center" });
+      toast.success("Item removed", { position: "bottom-right" });
       queryClient.invalidateQueries({ queryKey: ["cartInfo"] });
     },
     onError: (error: { response: { data: { message: string } } }) => {
       const errorMessage =
         error?.response?.data?.message || "An unexpected error occurred";
-      toast.error(errorMessage, { position: "top-center" });
+      toast.error(errorMessage, { position: "bottom-right" });
       console.error("Update failed:", error);
     },
   });
@@ -70,7 +70,7 @@ const ServiceItemBox = ({ service }: { service: ServiceItemType }) => {
 
         <EditServiceDescription
           id={service.id}
-          serviceDescription={service.description}
+          serviceDescription={service.description || ""}
         />
       </section>
     </div>

@@ -82,7 +82,7 @@ const ProductItemBox = ({
     onError: (error) => {
       const errorMessage =
         error.response?.data?.message || "An unexpected error occurred";
-      toast.error(errorMessage, { position: "bottom-center" });
+      toast.error(errorMessage, { position: "bottom-right" });
       console.error("Update failed:", error);
       setIsLoading(false);
       queryClient.invalidateQueries({ queryKey: ["cartInfo"] });
@@ -98,13 +98,13 @@ const ProductItemBox = ({
     mutationKey: ["removeCartItem"],
     mutationFn: removeItem,
     onSuccess: () => {
-      toast.success("Item removed", { position: "bottom-center" });
+      toast.success("Item removed", { position: "bottom-right" });
       queryClient.invalidateQueries({ queryKey: ["cartInfo"] });
     },
     onError: (error) => {
       const errorMessage =
         error.response?.data?.message || "An unexpected error occurred";
-      toast.error(errorMessage, { position: "bottom-center" });
+      toast.error(errorMessage, { position: "bottom-right" });
       console.error("Removal failed:", error);
     },
   });

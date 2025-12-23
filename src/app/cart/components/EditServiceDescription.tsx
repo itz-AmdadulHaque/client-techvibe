@@ -48,10 +48,10 @@ const EditServiceDescription = ({
           <span className="absolute -top-2 left-3 bg-white px-1 text-xs text-gray-600">
             Description
           </span>
-          <p className="text-sm text-gray-800">
+          <p className="text-xs font-semibold text-gray-800">
             {description?.slice(0, 15)}
             {description?.length > 15 ? "..." : ""}
-            {description.length == 0 ? "Add description" : ""}
+            {!description?.length ? "Add description" : ""}
           </p>
 
           <p className="absolute top-1/2 right-2 -translate-y-1/2 px-1 text-xs text-gray-600">
