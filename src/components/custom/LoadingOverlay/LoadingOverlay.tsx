@@ -20,7 +20,7 @@ export function LoadingOverlay({
     return (
         <div
             className={cn(
-                "sticky h-screen inset-0 z-50 flex items-center justify-center bg-background/70",
+                "sticky h-screen inset-0 z-40 flex items-center justify-center bg-background/70",
                 blur && "backdrop-blur-sm",
                 className
             )}
