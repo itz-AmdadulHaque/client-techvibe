@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { LocateFixed, Lock, LogOut, Mic, ShoppingBag, User } from "lucide-react";
+import { Lock, LogOut, ShoppingBag, User } from "lucide-react";
 import Link from "next/link";
 import { axiosPrivate } from "@/config/axios";
 import useAuth from "@/hooks/useAuth";
@@ -35,7 +35,7 @@ export default function NavUser() {
             alt={`${auth?.user?.firstName} ${auth?.user?.lastName}`}
 
           />
-          <AvatarFallback>
+          <AvatarFallback className="bg-slate-200">
             {auth?.user?.firstName?.[0]}
             {auth?.user?.lastName?.[0]}
           </AvatarFallback>
@@ -54,12 +54,6 @@ export default function NavUser() {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href="/profile?tab=address" className="flex items-center gap-2">
-            <LocateFixed size={16} />
-            Address
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
           <Link href="/profile?tab=password" className="flex items-center gap-2">
             <Lock size={16} />
             Password
@@ -69,12 +63,6 @@ export default function NavUser() {
           <Link href="/profile?tab=orders" className="flex items-center gap-2">
             <ShoppingBag size={16} />
             Orders
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link href="/profile?tab=requests" className="flex items-center gap-2">
-            <Mic size={16} />
-            Requests
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
