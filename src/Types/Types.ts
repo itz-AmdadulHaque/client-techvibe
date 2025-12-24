@@ -9,6 +9,7 @@ export type UserType = {
   address?: string;
   isBlocked: boolean;
   isDeleted: boolean;
+  isGoogle: boolean;
   role: string;
   image?: string;
   createdAt: Date;

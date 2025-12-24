@@ -34,6 +34,7 @@ import {
 import AuthCheck from "@/components/custom/AuthCheck";
 import { imageCompress } from "@/lib/imageCompressor";
 import useAuth from "@/hooks/useAuth";
+import Link from "next/link";
 
 export default function ProductRequestForm() {
   // const [dialog, setDialog] = useState({ open: false, title: '', description: '' });
@@ -132,6 +133,17 @@ export default function ProductRequestForm() {
     <AuthCheck className="">
       <div className="flex flex-col items-center justify-center p-4 min-h-screen bg-gray-100 dark:bg-gray-900 font-sans">
         <div className="max-w-4xl w-full p-6 space-y-8">
+          {!auth?.user?.isGoogle && (
+            <div className="bg-yellow-50 p-4 rounded-md mb-4 text-yellow-800">
+              <p>
+                Please verify your google account to continue.{" "}
+                <Link href="/profile" className="text-blue-600">
+                  Click here
+                </Link>
+              </p>
+            </div>
+          )}
+
           <Card className="rounded-sm shadow-lg border border-gray-200 dark:border-gray-700">
             <CardHeader className="bg-gray-50 dark:bg-gray-800">
               <CardTitle className="text-2xl font-bold text-gray-900 dark:text-gray-100">
@@ -381,6 +393,7 @@ export default function ProductRequestForm() {
                       disabled={
                         addCartMutation.isPending ||
                         orderNowMutation.isPending ||
+                        !auth?.user?.isGoogle ||
                         isCompressing
                       }
                       onClick={() =>
@@ -398,6 +411,7 @@ export default function ProductRequestForm() {
                       disabled={
                         addCartMutation.isPending ||
                         orderNowMutation.isPending ||
+                        !auth?.user?.isGoogle ||
                         isCompressing
                       }
                       onClick={() =>
@@ -423,7 +437,6 @@ export default function ProductRequestForm() {
               </Form>
             </CardContent>
           </Card>
-
 
           {/* <Dialog open={dialog.open} onOpenChange={(open) => setDialog(s => ({ ...s, open }))}>
             <DialogContent className="sm:max-w-[425px]">
