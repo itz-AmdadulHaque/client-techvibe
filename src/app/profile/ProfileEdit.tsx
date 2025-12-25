@@ -10,6 +10,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import ImageEditor from "./component/ImageEditor";
 import ResetPassword from "./component/ResetPassword";
 import OrdersList from "./component/OrdersList";
+import Link from "next/link";
 
 function ProfileComponent() {
   const searchParams = useSearchParams();
@@ -39,6 +40,9 @@ function ProfileComponent() {
               {user?.firstName} {user?.lastName}
             </h2>
             <h3 className="font-semibold text-slate-700">{user?.email}</h3>
+            <Link href="/orders" className="underline font-semibold text-sm">
+              View All Orders
+            </Link>
           </div>
         </div>
 
@@ -51,7 +55,6 @@ function ProfileComponent() {
 
               <TabsTrigger className="cursor-pointer" value="password">Password</TabsTrigger>
 
-              <TabsTrigger className="cursor-pointer" value="orders">Orders</TabsTrigger>
             </TabsList>
 
             <TabsContent value="profile">

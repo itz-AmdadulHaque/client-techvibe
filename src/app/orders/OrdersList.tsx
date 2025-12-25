@@ -1,6 +1,7 @@
 "use client";
 import CustomPagination from "@/components/custom/Pagination/Pagination";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { dateFormatter } from "@/lib/dateFormatter";
 import { OrderType } from "@/Types/Types";
@@ -49,30 +50,40 @@ const OrdersList = () => {
         </div>
       )}
 
+      {isPending && (
+        <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-4">
+          {["1", "2", "3", "4", "5", "6", "7", "8"].map((item) => (
+            <Skeleton key={item} className="h-40" />
+          ))}
+        </div>
+      )}
+      
+      {/* order list */}
       <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-4">
-        {data?.orders?.map((order: OrderType) => (
-          <Link key={order.id} href={`/orders/${order.id}`}>
-            <div className="text-sm border p-6 pb-4 bg-muted rounded-sm">
-              <div className="flex flex-wrap justify-between pb-3 border-b-2">
-                <span className="font-semibold">ID: {order.id}</span>
+        {!isPending &&
+          data?.orders?.map((order: OrderType) => (
+            <Link key={order.id} href={`/orders/${order.id}`}>
+              <div className="text-sm border p-6 pb-4 bg-muted rounded-sm">
+                <div className="flex flex-wrap justify-between pb-3 border-b-2">
+                  <span className="font-semibold">ID: {order.id}</span>
 
-                <Badge className={statusColors[order.status]}>
-                  {order.status}
-                </Badge>
+                  <Badge className={statusColors[order.status]}>
+                    {order.status}
+                  </Badge>
+                </div>
+
+                <div className="text-sm font-semibold text-gray-700 p-1">
+                  <p>Products: {order._count.productItems}</p>
+                  <p>Services: {order._count.serviceItems}</p>
+                  <p>Product Requests: {order._count.productRequests}</p>
+                </div>
+
+                <p className="font-bold text-end pt-2">
+                  {dateFormatter(order.createdAt)}
+                </p>
               </div>
-
-              <div className="text-sm font-semibold text-gray-700 p-1">
-                <p>Products: {order._count.productItems}</p>
-                <p>Services: {order._count.serviceItems}</p>
-                <p>Product Requests: {order._count.productRequests}</p>
-              </div>
-
-              <p className="font-bold text-end pt-2">
-                {dateFormatter(order.createdAt)}
-              </p>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
       </div>
 
       {data?.totalPages > 1 && (

@@ -60,7 +60,7 @@ export default function NavUser() {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href="/profile?tab=orders" className="flex items-center gap-2">
+          <Link href="/orders" className="flex items-center gap-2">
             <ShoppingBag size={16} />
             Orders
           </Link>
