@@ -14,11 +14,12 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Image from "next/image";
 import googleLogo from "../../../public/google.png";
-import { axiosPrivate } from "@/config/axios";
+import axios from "@/config/axios";
 import { useMutation } from "@tanstack/react-query";
 import useAuth from "@/hooks/useAuth";
 import { useRouter, useSearchParams } from "next/navigation";
-
+import { getErrorMessage } from "@/lib/errorMessage";
+import { toast } from "sonner";
 
 const loginSchema = z.object({
   email: z.email("Invalid email"),
@@ -28,59 +29,53 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
-
   const searchParams = useSearchParams();
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
-      password: ""
+      password: "",
     },
   });
 
   const { setAuth } = useAuth();
   const router = useRouter();
 
-
   const userLogin = async (data: LoginFormValues) => {
-
-    const res = await axiosPrivate.post("/auth/login", data)
+    const res = await axios.post("/auth/login", data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    });
 
     return res.data;
-  }
-
+  };
 
   const { mutate: loginFunction, isPending } = useMutation({
     mutationFn: userLogin,
     onSuccess: (data) => {
-      // Handle successful login, e.g., redirect or show success message
-
-
       setAuth({
         accessToken: data.data.accessToken,
         user: data.data.user,
         isLoading: false,
-      })
+      });
 
-      const type = searchParams.get("type")
-      const slug = searchParams.get("slug")
+      const type = searchParams.get("type");
+      const slug = searchParams.get("slug");
 
       if (type && slug) {
-        router.push(`/${type}/${slug}`)
+        router.push(`/${type}/${slug}`);
+      } else {
+        router.push("/profile");
       }
-      else {
-        router.push("/profile")
-      }
-
-
     },
     onError: (error) => {
-      // Handle error, e.g., show error message
-      console.error("Login failed:", error);
+      const errMassage = getErrorMessage(error);
+      toast.error(errMassage, { position: "bottom-right" });
     },
   });
-
 
   const onSubmit = async (data: LoginFormValues) => {
     loginFunction(data);
@@ -93,7 +88,6 @@ export default function LoginForm() {
       console.log(error);
     }
   };
-
 
   return (
     <Card className="w-full max-w-sm">
@@ -113,17 +107,12 @@ export default function LoginForm() {
             height={16}
             className="inline-block mr-2 h-4 w-4"
           />
-
-
           Continue with Google
         </Button>
-
 
         <div className="text-center my-4 text-muted-foreground">or</div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-
-
             <FormField
               control={form.control}
               name="email"
@@ -139,8 +128,6 @@ export default function LoginForm() {
                 </FormItem>
               )}
             />
-
-
 
             <FormField
               control={form.control}
@@ -158,12 +145,8 @@ export default function LoginForm() {
               )}
             />
 
-
-
             <Button disabled={isPending} type="submit" className="w-full">
-              {
-                isPending ? "Logging in..." : "Login"
-              }
+              {isPending ? "Logging in..." : "Login"}
             </Button>
           </form>
         </Form>
