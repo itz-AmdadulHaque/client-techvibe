@@ -22,9 +22,7 @@ function ProfileComponent() {
   const status = searchParams.get("status");
 
   const router = useRouter();
-
   const { auth } = useAuth();
-
   const user = auth.user;
 
   const handleTabChange = (value: string) => {
@@ -40,20 +38,20 @@ function ProfileComponent() {
             <h2 className="font-bold text-2xl my-2">
               {user?.firstName} {user?.lastName}
             </h2>
-            <h3>{user?.phone || user?.email}</h3>
+            <h3 className="font-semibold text-slate-700">{user?.email}</h3>
           </div>
         </div>
 
         <div className="mt-12">
           <Tabs value={defaultTab} onValueChange={handleTabChange}>
             <TabsList className="w-full">
-              <TabsTrigger value="profile">Profile</TabsTrigger>
+              <TabsTrigger className="cursor-pointer" value="profile">Profile</TabsTrigger>
 
-              <TabsTrigger value="address">Address</TabsTrigger>
+              <TabsTrigger className="cursor-pointer" value="address">Address</TabsTrigger>
 
-              <TabsTrigger value="password">Password</TabsTrigger>
+              <TabsTrigger className="cursor-pointer" value="password">Password</TabsTrigger>
 
-              <TabsTrigger value="orders">Orders</TabsTrigger>
+              <TabsTrigger className="cursor-pointer" value="orders">Orders</TabsTrigger>
             </TabsList>
 
             <TabsContent value="profile">
