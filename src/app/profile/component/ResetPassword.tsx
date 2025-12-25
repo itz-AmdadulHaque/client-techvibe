@@ -15,20 +15,21 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
-import useAuth from "@/hooks/useAuth";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { toast } from "sonner";
 import { Eye, EyeOff } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { getErrorMessage } from "@/lib/errorMessage";
 
 const ResetPassword = () => {
-  const router = useRouter();
-
-  const { auth, setAuth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -54,18 +55,11 @@ const ResetPassword = () => {
   const { mutate: updateProfile, isPending } = useMutation({
     mutationFn: updateUser,
     onSuccess: (data) => {
-      // Handle successful login, e.g., redirect or show success message
-
       toast.success(data.message, {
         position: "bottom-right",
       });
 
-      const newAuth = { ...auth };
-      newAuth.user = data.data;
-
-      setAuth({ ...newAuth });
-
-      router.push("/");
+      form.reset();
     },
     onError: (error) => {
       const errMassage = getErrorMessage(error);
@@ -75,7 +69,14 @@ const ResetPassword = () => {
 
   return (
     <div>
-      <Card className="max-w-[600px] mx-auto mt-12">
+      <Card className="max-w-[600px] mx-auto my-12">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold">Reset Password</CardTitle>
+          <CardDescription>
+            Please enter your current password and new password. If you logged
+            in with Google, use a dummy old password.
+          </CardDescription>
+        </CardHeader>
         <CardContent>
           <Form {...form}>
             <form
@@ -87,7 +88,7 @@ const ResetPassword = () => {
                 name="oldPassword"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>Old Password</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Input
