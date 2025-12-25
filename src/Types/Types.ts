@@ -4,6 +4,7 @@ export type UserType = {
   lastName: string;
   email: string;
   phone?: string;
+  companyName?: string;
   district?: string;
   thana?: string;
   address?: string;

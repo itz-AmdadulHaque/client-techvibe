@@ -12,7 +12,6 @@ import ResetPassword from "./component/ResetPassword";
 import OrdersList from "./component/OrdersList";
 
 function ProfileComponent() {
-
   const searchParams = useSearchParams();
   const defaultTab = searchParams.get("tab") || "profile";
 
@@ -22,13 +21,11 @@ function ProfileComponent() {
   const limit = searchParams.get("limit");
   const status = searchParams.get("status");
 
-
   const router = useRouter();
 
   const { auth } = useAuth();
 
   const user = auth.user;
-
 
   const handleTabChange = (value: string) => {
     router.push(`/profile?tab=${value}`);
@@ -36,27 +33,19 @@ function ProfileComponent() {
 
   return (
     <AuthCheck className="">
-      <div className="min-h-screen container mx-auto p-12">
-
-        <div className="flex justify-center items-center gap-6 md:mt-12">
-
+      <div className="min-h-screen container mx-auto">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-6 md:mt-12">
           <ImageEditor />
-
-
-          <div className="p-8">
-
-            <h2 className="font-bold text-2xl my-2" >{user?.firstName} {user?.lastName}</h2>
+          <div className="text-center sm:text-left">
+            <h2 className="font-bold text-2xl my-2">
+              {user?.firstName} {user?.lastName}
+            </h2>
             <h3>{user?.phone || user?.email}</h3>
-
-
           </div>
-
         </div>
-
 
         <div className="mt-12">
           <Tabs value={defaultTab} onValueChange={handleTabChange}>
-
             <TabsList className="w-full">
               <TabsTrigger value="profile">Profile</TabsTrigger>
 
@@ -82,11 +71,8 @@ function ProfileComponent() {
             <TabsContent value="orders">
               <OrdersList searchParams={{ page, limit, status, search }} />
             </TabsContent>
-
           </Tabs>
-
         </div>
-
       </div>
     </AuthCheck>
   );
