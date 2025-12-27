@@ -38,6 +38,11 @@ const OrdersList = () => {
     CANCELLED: "bg-gray-500/15 text-gray-600 border-gray-500/20",
     REJECTED: "bg-red-500/15 text-red-600 border-red-500/20",
   };
+
+  if (isError) {
+    return <div>Something went wrong</div>;
+  }
+
   return (
     <div className="container mx-auto ">
       <h1 className="text-2xl pt-4 pb-3 font-semibold">My Orders</h1>
