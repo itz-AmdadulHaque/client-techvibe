@@ -15,6 +15,8 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils"; // shadcn utility for conditional classes
+import { SearchInput } from "@/components/custom/Filters/input-search";
+import { SelectFilter } from "@/components/custom/Filters/select-search";
 
 const formSchema = z.object({
   name: z.string().optional(),
@@ -67,7 +69,7 @@ export default function ServicesFilterForm({
           className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:items-center gap-3"
         >
           {/* Name field - grows to take available space on desktop */}
-          <FormField
+          {/* <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
@@ -81,10 +83,20 @@ export default function ServicesFilterForm({
                 </FormControl>
               </FormItem>
             )}
+          /> */}
+
+          <SearchInput placeholder="Type to search..." />
+
+          <SelectFilter
+            options={categories.map((cat) => ({ value: cat.slug, label: cat.title }))}
+            paramName="category"
+            placeholder="All Categories"
+            allOptionLabel="All Categories"
+            allOptionValue="all"
           />
 
           {/* Category filter */}
-          <FormField
+          {/* <FormField
             control={form.control}
             name="category"
             render={({ field }) => (
@@ -106,7 +118,7 @@ export default function ServicesFilterForm({
                 </Select>
               </FormItem>
             )}
-          />
+          /> */}
 
           {/* Action Buttons - Grouped for mobile alignment */}
           <div className="flex items-center gap-2 sm:col-span-2 lg:col-span-1">
