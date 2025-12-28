@@ -62,7 +62,7 @@ export function ServiceList({
 
       {/* Services */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-        {data?.services.map((service: ServiceType) => (
+        {data && data?.services.map((service: ServiceType) => (
           <ServiceCard service={service} key={service.id} />
         ))}
       </div>

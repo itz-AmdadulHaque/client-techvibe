@@ -54,6 +54,7 @@ export default async function ServicePage({
         />
       </section>
 
+      {/* Services */}
       <ServiceList searchParams={resolvedSearchParams} />
     </div>
   );
