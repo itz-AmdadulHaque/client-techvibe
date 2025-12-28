@@ -27,7 +27,7 @@ export default async function ConsultantsPage({
   const categories = await getCategories();
 
   return (
-    <div className="container mx-auto space-y-4">
+    <div className="container mx-auto space-y-4 pb-6">
       <SectionTitle
         title="Expert Safety & IT Consulting Services"
         desciption="Protecting your business with comprehensive fire safety, infrastructure integrity, and IT security solutions from certified professionals."

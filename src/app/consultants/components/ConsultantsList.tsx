@@ -59,7 +59,7 @@ export function ConsultantList({
       )}
 
       {data?.consultants.length < 1 && (
-        <p className="text-center text-xl font-bold">No services found</p>
+        <p className="text-center text-xl font-bold">No Consultants found</p>
       )}
 
       {/* Consultants */}
@@ -68,44 +68,51 @@ export function ConsultantList({
           data?.consultants.map((consultant: ConsultantType) => (
             <Card
               key={consultant.id}
-              className="shadow-md rounded-2xl overflow-hidden"
+              className="shadow-md rounded-sm overflow-hidden flex flex-col h-full"
             >
-              <CardHeader className="flex items-center gap-4 mb-4">
+              <CardHeader className="flex flex-row items-center gap-4 mb-2">
                 <Image
                   src={`${process.env.NEXT_PUBLIC_IMAGE_SERVER}/${consultant.image}`}
                   alt={consultant.fullName}
                   width={80}
                   height={80}
-                  className="w-28 h-28 rounded-full object-cover"
+                  className="w-24 h-24 rounded-full object-cover shrink-0"
                 />
-                <div>
-                  <h3 className="font-semibold">{consultant.fullName}</h3>
-                  <p className="text-sm text-gray-500">{consultant.title}</p>
-                  <p className="text-xs text-gray-400">
-                    {consultant.experience} years experience
+                <div className="space-y-1">
+                  <h1 className="text-2xl font-bold text-gray-900 leading-tight">
+                    {consultant.fullName}
+                  </h1>
+                  <p className="text-sm font-medium text-blue-600 uppercase tracking-wide">
+                    {consultant.title}
+                  </p>
+                  <p className="text-xs text-muted-foreground flex items-center gap-1 mt-2">
+                    <span className="font-semibold text-gray-700">
+                      {consultant.experience} Years
+                    </span>{" "}
+                    of Professional Experience
                   </p>
                 </div>
               </CardHeader>
-              <CardContent>
-                <p className="text-sm mb-3">
-                  {consultant.bio.length > 70
-                    ? consultant.bio.slice(0, 70) + "......"
+
+              <CardContent className="flex flex-col flex-1 pt-0">
+                <p className="text-sm mb-4 text-gray-600 line-clamp-3">
+                  {consultant.bio.length > 120
+                    ? consultant.bio.slice(0, 120) + "..."
                     : consultant.bio}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-4">
+
+                <div className="flex flex-wrap gap-2 mb-6">
                   {consultant.specializations.map((spec, i) => (
                     <span
                       key={i}
-                      className="px-2 py-1 text-xs bg-gray-100 rounded-full border"
+                      className="px-2 py-1 text-[10px] font-bold uppercase bg-gray-100 text-gray-600 rounded-sm border border-gray-200"
                     >
                       {spec}
                     </span>
                   ))}
                 </div>
-                <div className="flex justify-between">
-                  {/* <Button asChild variant="default">
-                                    <Link href={`/consultants/${consultant.slug}`}>Show Details</Link>
-                                </Button> */}
+
+                <div className="flex justify-between gap-2 mt-auto pt-4 border-t">
                   <ConsultantDetails consultant={consultant} />
                   <ContactAdmin />
                 </div>
