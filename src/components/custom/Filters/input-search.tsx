@@ -78,14 +78,23 @@ export function SearchInput({
 
   return (
     <div className={cn("flex items-center gap-2 w-full", className)}>
-      <div className="relative flex-1">
+      {/* 1. Add 'group' to the wrapper. 
+          2. Any focus inside this div will trigger 'group-focus-within' 
+      */}
+      <div className="relative flex-1 group">
+        
+        {/* Search Button */}
         <button
           type="button"
           onClick={handleSearch}
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:cursor-pointer hover:text-black transition-colors focus:outline-none focus:text-black"
+          className={cn(
+            "absolute flex justify-center items-center h-full aspect-square rounded-l-sm transition-colors z-10 text-white",
+            "bg-red-500",                   // Default color
+            "group-focus-within:bg-green-500" // Changes to green when input is clicked/focused
+          )}
           aria-label="Submit search"
         >
-          <Search className="h-4 w-4" />
+          <Search className="h-5 w-5" />
         </button>
 
         <Input
@@ -93,7 +102,11 @@ export function SearchInput({
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
-          className="pl-9 pr-9 border-slate-600 focus-visible:border-black  focus-visible:ring-0"
+          className={cn(
+            "pl-12 pr-9 border-slate-600 transition-colors",
+            "focus-visible:ring-0 focus-visible:ring-offset-0", // Clean focus
+            "focus-visible:border-black" // Input border turns black on focus
+          )}
           aria-label={placeholder}
         />
 
@@ -101,7 +114,7 @@ export function SearchInput({
           <button
             type="button"
             onClick={handleClear}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:cursor-pointer hover:text-black transition-colors focus:outline-none focus:text-black"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-black transition-colors z-20"
             aria-label="Clear search"
           >
             <X className="h-4 w-4" />

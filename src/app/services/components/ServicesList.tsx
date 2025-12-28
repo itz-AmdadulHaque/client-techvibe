@@ -55,9 +55,9 @@ export function ServiceList({
       <SectionTitle title="Our Services" />
 
       {/* Filters */}
-      <section className="flex gap-2 justify-center">
+      <section className="flex flex-col sm:flex-row gap-2 justify-center">
         <SearchInput
-          className="max-w-[300px]"
+          className="sm:max-w-[300px]"
           paramName="search"
           placeholder="Type to search..."
         />
