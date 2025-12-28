@@ -7,7 +7,7 @@ import { ConsultantDetails } from "./ConsultantDetails";
 import ContactAdmin from "./ContactAdmin";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
-import { Skeleton } from "@/components/ui/skeleton";
+import { ConsultantSkeleton } from "./ConsultantSkeleton";
 
 export function ConsultantList({
   searchParams,
@@ -49,11 +49,11 @@ export function ConsultantList({
 
   return (
     <div className="space-y-6">
-      {/* Loading */}
+      {/* Loader skeleton */}
       {isPending && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-          {["1", "2", "3", "4", "5", "6"].map((item) => (
-            <Skeleton key={item} className="h-[340px] bg-slate-400" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[...Array(6)].map((_, i) => (
+            <ConsultantSkeleton key={i} />
           ))}
         </div>
       )}

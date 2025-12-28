@@ -3,9 +3,9 @@
 import { ServiceType } from "@/Types/Types";
 import CustomPagination from "@/components/custom/Pagination/Pagination";
 import ServiceCard from "@/components/custom/ServiceCard/ServiceCard";
-import { Skeleton } from "@/components/ui/skeleton";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
+import { ServiceCardSkeleton } from "./ServiceSekelon";
 
 export function ServiceList({
   searchParams,
@@ -50,8 +50,8 @@ export function ServiceList({
       {/* Loading */}
       {isPending && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-          {["1", "2", "3", "4", "5", "6"].map((item) => (
-            <Skeleton key={item} className="h-[340px] bg-slate-400" />
+          {[...Array(6)].map((_, i) => (
+            <ServiceCardSkeleton key={i} />
           ))}
         </div>
       )}
@@ -62,9 +62,10 @@ export function ServiceList({
 
       {/* Services */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-        {data && data?.services.map((service: ServiceType) => (
-          <ServiceCard service={service} key={service.id} />
-        ))}
+        {data &&
+          data?.services.map((service: ServiceType) => (
+            <ServiceCard service={service} key={service.id} />
+          ))}
       </div>
 
       {/* Pagination */}
