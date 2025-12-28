@@ -92,7 +92,7 @@ export function SelectFilter({
     <Select onValueChange={handleValueChange} value={value}>
       <SelectTrigger
         className={cn(
-          "w-full lg:w-[180px] border-black focus:ring-black",
+          "w-full border-black focus:ring-black",
           className
         )}
       >

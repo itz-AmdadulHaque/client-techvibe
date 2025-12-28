@@ -1,18 +1,14 @@
 "use client";
 
-import { CategoryType, ServiceType } from "@/Types/Types";
+import { ServiceType } from "@/Types/Types";
 import CustomPagination from "@/components/custom/Pagination/Pagination";
 import ServiceCard from "@/components/custom/ServiceCard/ServiceCard";
-import { SearchInput } from "@/components/custom/Filters/input-search";
-import { SelectFilter } from "@/components/custom/Filters/select-search";
-import SectionTitle from "@/components/custom/SectionTitle/SectionTitle";
 import { Skeleton } from "@/components/ui/skeleton";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
 
 export function ServiceList({
   searchParams,
-  categories,
 }: {
   searchParams: {
     search?: string;
@@ -20,7 +16,6 @@ export function ServiceList({
     limit?: string;
     category?: string;
   };
-  categories: CategoryType[];
 }) {
   const axiosPrivate = useAxiosPrivate();
 
@@ -51,35 +46,12 @@ export function ServiceList({
   }
 
   return (
-    <div className="container mx-auto space-y-4">
-      <SectionTitle title="Our Services" />
-
-      {/* Filters */}
-      <section className="flex flex-col sm:flex-row gap-2 justify-center">
-        <SearchInput
-          className="sm:max-w-[300px]"
-          paramName="search"
-          placeholder="Type to search..."
-        />
-
-        <SelectFilter
-          options={categories.map((cat: CategoryType) => ({
-            value: cat.slug,
-            label: cat.title,
-          }))}
-          paramName="category"
-          placeholder="All Categories"
-          allOptionLabel="All Categories"
-          allOptionValue="all"
-          clearParams={["name"]}
-        />
-      </section>
-
+    <div className="space-y-4">
       {/* Loading */}
       {isPending && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {["1", "2", "3", "4", "5", "6"].map((item) => (
-            <Skeleton key={item} className="h-[340px]" />
+            <Skeleton key={item} className="h-[340px] bg-slate-400" />
           ))}
         </div>
       )}
