@@ -44,7 +44,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
       <div className="lg:col-span-3">
         {/* Top Header bar */}
         <div className="font-bold p-2 px-4 bg-gray-200 dark:bg-gray-800 my-4 rounded-md flex justify-between items-center">
-          <p>Product Listing</p>
+          <p>Products</p>
           <FilterSheet filters={filters} />
         </div>
 
