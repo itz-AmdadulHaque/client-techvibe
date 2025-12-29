@@ -85,7 +85,7 @@ export default function Navbar() {
     {
       label: "Services",
       href: "/services",
-      icon: <Wrench  size={20} />,
+      icon: <Wrench size={20} />,
     },
     {
       label: "Products",
@@ -113,14 +113,14 @@ export default function Navbar() {
     <>
       {/* Desktop Top Navbar */}
       <nav className="shadow-md fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-700">
-        <div className="flex justify-between items-center px-2 lg:px-3 py-3 container mx-auto">
+        <div className="flex justify-between items-center px-2 lg:px-3 py-1.5 md:py-3 container mx-auto">
           <Link href="/" className="flex items-center gap-2 md:gap-4">
             <Image
               src="/logo.png"
               alt="TechVibe"
               width={100}
               height={100}
-              className="w-14 sm:w-12 rounded-full"
+              className="w-12 rounded-full"
             />
             <h2 className=" hidden xl:block text-xl font-semibold">TechVibe</h2>
           </Link>
@@ -196,17 +196,9 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-2 md:gap-4">
-            <div className="flex-1 ">
-              <Suspense>
-                <SearchBar />
-              </Suspense>
-            </div>
+            <SearchBar />
 
             <CartInfo className="hidden md:block" />
-
-            {/* <div className="hidden lg:block">
-              <ModeToggle />
-            </div> */}
 
             {auth?.user ? (
               <NavUser />
