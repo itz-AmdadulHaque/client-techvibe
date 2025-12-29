@@ -1,37 +1,55 @@
 import { Product } from "@/Types/Types";
+import { cn } from "@/lib/utils"; // Shadcn utility
 
-export default function ProductPrice({ product }: { product: Product }) {
-    if (!product.price) {
-        return (
-            <div className="text-muted-foreground flex items-center font-semibold">
-                Price on Request
-            </div>
-        );
-    }
+interface ProductPriceProps {
+  product: Product;
+  align?: "left" | "center" | "right";
+}
 
-    const now = new Date();
-    const hasDiscount =
-        product.discount &&
-        product.expiresAt &&
-        new Date(product.expiresAt) > now;
+export default function ProductPrice({ product, align = "center" }: ProductPriceProps) {
+  // Mapping for Flexbox containers (justify-center, justify-start, etc.)
+  const justifyMap = {
+    left: "justify-start text-left",
+    center: "justify-center text-center",
+    right: "justify-end text-right",
+  };
 
-    if (hasDiscount) {
-        const discountedPrice =
-            product.price - product.discount;
+  const alignmentClasses = justifyMap[align];
 
-        return (
-            <div className="flex flex-wrap items-center justify-center font-semibold gap-1 bangla-font ">
-                {/* <Image src="/taka.png" alt="Taka symbol" width={20} height={20} /> */}
-                <p className="line-through text-sm font-thin text-red-500">{product.price}<span className="bangla-font font-semibold">৳</span></p>
-                <p className="font-semibold text-lg">{discountedPrice}<span className="bangla-font font-semibold">৳</span></p>
-            </div>
-        );
-    }
+  if (!product.price) {
+    return (
+      <div className={cn("text-muted-foreground flex items-center font-semibold w-full", alignmentClasses)}>
+        Price on Request
+      </div>
+    );
+  }
+
+  const now = new Date();
+  const hasDiscount =
+    product.discount &&
+    product.expiresAt &&
+    new Date(product.expiresAt) > now;
+
+  if (hasDiscount) {
+    const discountedPrice = product.price - product.discount;
 
     return (
-        <div >
-            {/* <Image src="/taka.png" alt="Taka symbol" width={20} height={20} /> */}
-            <p className="text-lg font-semibold ">{product.price}<span className="bangla-font font-semibold">৳</span></p>
-        </div>
+      <div className={cn("flex flex-wrap items-center font-semibold gap-1 bangla-font w-full", alignmentClasses)}>
+        <p className="line-through text-sm font-thin text-red-500">
+          {product.price}<span className="bangla-font font-semibold">৳</span>
+        </p>
+        <p className="font-semibold text-lg">
+          {discountedPrice}<span className="bangla-font font-semibold">৳</span>
+        </p>
+      </div>
     );
+  }
+
+  return (
+    <div className={cn("w-full", alignmentClasses)}>
+      <p className="text-lg font-semibold">
+        {product.price}<span className="bangla-font font-semibold">৳</span>
+      </p>
+    </div>
+  );
 }
