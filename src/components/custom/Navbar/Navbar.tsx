@@ -25,7 +25,7 @@ import { NavItemType } from "@/Types/ComponentTypes";
 import SearchBar from "./SearchBar";
 import Image from "next/image";
 import CartInfo from "../CartInfo/CartInfo";
-import { Suspense, useContext } from "react";
+import { useContext } from "react";
 import { DataContext } from "@/Provider/DataProvider/DataProvider";
 import Navbarcollapse from "./NavbarCollaps";
 import { cn } from "@/lib/utils";
