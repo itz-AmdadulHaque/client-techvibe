@@ -31,9 +31,9 @@ function ProfileComponent() {
   };
 
   return (
-    <AuthCheck className="">
+    <AuthCheck className="mt-8 md:mt-12">
       <div className="min-h-screen container mx-auto">
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-6 md:mt-12">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-6 ">
           <ImageEditor />
           <div className="text-center sm:text-left">
             <h2 className="font-bold text-2xl my-2">
@@ -46,7 +46,7 @@ function ProfileComponent() {
           </div>
         </div>
 
-        <div className="mt-12">
+        <div className="mt-10">
           <Tabs value={defaultTab} onValueChange={handleTabChange}>
             <TabsList className="w-full">
               <TabsTrigger className="cursor-pointer" value="profile">Profile</TabsTrigger>

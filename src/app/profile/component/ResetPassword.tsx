@@ -69,7 +69,7 @@ const ResetPassword = () => {
 
   return (
     <div>
-      <Card className="max-w-[600px] mx-auto my-12">
+      <Card className="max-w-[600px] mx-auto my-10">
         <CardHeader>
           <CardTitle className="text-2xl font-bold">Reset Password</CardTitle>
           <CardDescription>

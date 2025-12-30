@@ -67,7 +67,7 @@ const AddressEditor = () => {
 
   return (
     <div>
-      <Card className="max-w-[600px] mx-auto mt-12">
+      <Card className="max-w-[600px] mx-auto my-10">
         <CardContent>
           <Form {...form}>
             <form
