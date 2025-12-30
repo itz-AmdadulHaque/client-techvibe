@@ -108,7 +108,8 @@ export default function Navbar() {
     enabled: !auth.user,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
-    retry: false,
+    refetchOnReconnect: false,
+    retry: false
   });
 
   return (
