@@ -107,6 +107,8 @@ export default function Navbar() {
     },
     enabled: !auth.user,
     refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    retry: false,
   });
 
   return (
@@ -240,7 +242,7 @@ export default function Navbar() {
           <li
             className={cn(
               "flex flex-col items-center text-xs",
-              pathname === "/cart" ? "text-blue-600" : "text-gray-500"
+              pathname === "/cart" ? "text-red-500" : "text-black"
             )}
           >
             <CartInfo className="" />
