@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CloudUpload, ShoppingCart, Package, X } from "lucide-react";
+import { CloudUpload, Package, X } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -130,9 +130,9 @@ export default function ProductRequestForm() {
   };
 
   return (
-    <AuthCheck className="">
-      <div className="flex flex-col items-center justify-center p-4 min-h-screen bg-gray-100 dark:bg-gray-900 font-sans">
-        <div className="max-w-4xl w-full p-6 space-y-8">
+    <AuthCheck className="my-10">
+      <div className="flex flex-col items-center justify-center min-h-screen  dark:bg-gray-900 font-sans">
+        <div className="max-w-4xl w-full space-y-8">
           {!auth?.user?.isGoogle && (
             <div className="bg-yellow-50 p-4 rounded-md mb-4 text-yellow-800">
               <p>
@@ -387,7 +387,7 @@ export default function ProductRequestForm() {
                   />
 
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Button
+                    {/* <Button
                       type="button"
                       className="flex-1 w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-sm transition-colors disabled:opacity-50"
                       disabled={
@@ -404,7 +404,7 @@ export default function ProductRequestForm() {
                     >
                       <ShoppingCart className="mr-2 h-4 w-4" />
                       Add to Cart
-                    </Button>
+                    </Button> */}
                     <Button
                       type="button"
                       className="flex-1 w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-sm transition-colors disabled:opacity-50"
