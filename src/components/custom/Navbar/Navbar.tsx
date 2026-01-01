@@ -159,7 +159,7 @@ export default function Navbar() {
                         />
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        <div className="flex flex-col gap-2 max-w-[100%] max-h-[80vh] overflow-y-auto p-4">
+                        <div className="flex flex-col gap-2 min-w-max max-w-[80%] max-h-[80vh] overflow-y-auto p-4">
                           {item.links.map((category) => (
                             <Navbarcollapse
                               key={category.label}
