@@ -41,20 +41,20 @@ export default function Navbar() {
     {
       label: "Home",
       href: "/",
-      icon: <Home size={20} />,
+      icon: <Home />,
     },
     {
       label: "Shop",
-      icon: <ShoppingBag size={20} />,
+      icon: <ShoppingBag  />,
       links: categories?.map((cat) => ({
         label: cat.title,
         href: `/products?category=${cat.slug}`,
-        icon: <Folder size={20} />,
+        icon: <Folder  />,
         image: cat.image,
         links: cat.subCategories?.map((sub) => ({
           label: sub.title,
           href: `/products?category=${cat.slug}&subCategory=${sub.slug}`,
-          icon: <Folder size={16} />,
+          icon: <Folder  />,
           image: sub.image,
         })),
       })),
@@ -62,17 +62,17 @@ export default function Navbar() {
     {
       label: "Services",
       href: "/services",
-      icon: <Wrench size={20} />,
+      icon: <Wrench  />,
     },
     {
       label: "Consultants",
       href: "/consultants",
-      icon: <Briefcase size={20} />,
+      icon: <Briefcase  />,
     },
     {
       label: "Request Product",
       href: "/request-product",
-      icon: <Package2 size={20} />,
+      icon: <Package2  />,
     },
   ];
 
@@ -80,17 +80,17 @@ export default function Navbar() {
     {
       label: "Home",
       href: "/",
-      icon: <Home size={20} />,
+      icon: <Home  />,
     },
     {
       label: "Services",
       href: "/services",
-      icon: <Wrench size={20} />,
+      icon: <Wrench  />,
     },
     {
       label: "Products",
       href: "/products",
-      icon: <Package2 size={20} />,
+      icon: <Package2  />,
     },
   ];
 
@@ -224,7 +224,7 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Bottom Navbar */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] border-t z-50">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] border-t z-50 px-3">
         <ul className="grid grid-cols-4 items-center py-1">
           {bottomNavItems.map((item) => (
             <li key={item.label}>
