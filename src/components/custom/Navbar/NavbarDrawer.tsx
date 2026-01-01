@@ -35,7 +35,7 @@ export function NavbarDrawer({ navItems }: { navItems: NavItemType[] }) {
         </Button>
       </SheetTrigger>
 
-      <SheetContent className="px-4 w-full" side="left">
+      <SheetContent className="px-4 w-full overflow-y-auto" side="left">
         <SheetHeader className="px-0 border-b">
           <SheetTitle className="px-0">
             <Link href="/" onClick={closeSheet}>
