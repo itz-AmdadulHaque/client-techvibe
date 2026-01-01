@@ -24,7 +24,7 @@ function Navbarcollapse({ category, closeSheet }: { category: NavItemType, close
     >
       <div
         className={cn(
-          "flex items-center justify-between gap-2 p-1 w-full sm:min-w-max",
+          "flex items-center justify-between gap-2 p-1 ml-2 mt-2 w-full",
           "hover:bg-green-50 hover:text-green-600 dark:hover:bg-green-900/30 dark:hover:text-green-400",
           isOpen &&
             "bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-400"
@@ -32,7 +32,7 @@ function Navbarcollapse({ category, closeSheet }: { category: NavItemType, close
       >
         <Link
           href={category.href!}
-          className="flex-1 flex items-center gap-3 rounded-sm transition-all duration-200"
+          className="min-w-0 flex-1 flex items-center gap-3 rounded-sm transition-all duration-200"
           onClick={closeSheet}
         >
           {category.image && (

@@ -15,7 +15,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { NavItemType } from "@/Types/ComponentTypes";
-import { ChevronDown, Menu, ShoppingCart } from "lucide-react";
+import { ChevronDown, Menu} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -35,7 +35,7 @@ export function NavbarDrawer({ navItems }: { navItems: NavItemType[] }) {
         </Button>
       </SheetTrigger>
 
-      <SheetContent className="px-4 w-[90%]" side="left">
+      <SheetContent className="px-4 w-full" side="left">
         <SheetHeader className="px-0 border-b">
           <SheetTitle className="px-0">
             <Link href="/" onClick={closeSheet}>
@@ -56,7 +56,7 @@ export function NavbarDrawer({ navItems }: { navItems: NavItemType[] }) {
             item.links ? (
               <Collapsible key={item.label}>
                 <CollapsibleTrigger className="group flex items-center justify-between w-full text-left">
-                  <div className="text-xl font-semibold flex items-center gap-2 text-lg">
+                  <div className="text-xl font-semibold flex items-center gap-2">
                     {item.icon && (
                       <span className="bg-accent rounded-sm p-1.5">
                         {item.icon}
