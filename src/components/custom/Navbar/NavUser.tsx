@@ -29,7 +29,7 @@ export default function NavUser() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar className="cursor-pointer">
+        <Avatar className="cursor-pointer ">
           <AvatarImage
             src={`${process.env.NEXT_PUBLIC_IMAGE_SERVER}/${auth?.user?.image}` || undefined}
             alt={`${auth?.user?.firstName} ${auth?.user?.lastName}`}

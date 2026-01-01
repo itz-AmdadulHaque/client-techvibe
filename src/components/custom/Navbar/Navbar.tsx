@@ -109,23 +109,23 @@ export default function Navbar() {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
-    retry: false
+    retry: false,
   });
 
   return (
     <>
       {/* Desktop Top Navbar */}
       <nav className="shadow-md fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-700">
-        <div className="flex justify-between items-center px-2 lg:px-3 py-1.5 md:py-3 container mx-auto">
-          <Link href="/" className="flex items-center gap-2 md:gap-4">
+        <div className="flex justify-between items-center px-2 lg:px-3 py-1.5 md:py-2 container mx-auto">
+          <Link href="/">
             <Image
               src="/logo.png"
               alt="TechVibe"
-              width={100}
+              width={300}
               height={100}
-              className="w-12 rounded-full"
+              priority
+              className="h-12 sm:h-14 w-auto aspect-[3/1]"
             />
-            <h2 className=" hidden xl:block text-xl font-semibold">TechVibe</h2>
           </Link>
 
           <ul className="hidden lg:flex gap-6 items-center">
@@ -198,10 +198,11 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div className="flex items-center gap-2 md:gap-4">
+          {/* search cart login user */}
+          <div className="flex items-center gap-2 md:gap-3">
             <SearchBar />
 
-            <CartInfo className="hidden md:block" />
+            <CartInfo className="hidden md:block p-[3px] px-1 hover:text-red-500  border border-slate-300 hover:border-red-500 group rounded-sm" />
 
             {auth?.user ? (
               <NavUser />
@@ -209,7 +210,7 @@ export default function Navbar() {
               <Link
                 href="/login"
                 className={cn(
-                  "border p-1 px-2 rounded-md hover:text-red-500 hover:border-red-500 dark:text-white dark:border-white",
+                  "border p-1 px-2 rounded-sm hover:text-red-500 hover:border-red-500 dark:text-white dark:border-white",
                   pathname === "login" && "text-red-500 border-red-500"
                 )}
               >
@@ -224,13 +225,13 @@ export default function Navbar() {
 
       {/* Mobile Bottom Navbar */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] border-t z-50">
-        <ul className="flex justify-center gap-6 items-center py-2">
+        <ul className="grid grid-cols-4 items-center py-1">
           {bottomNavItems.map((item) => (
             <li key={item.label}>
               <Link
                 href={item.href || "#"}
                 className={cn(
-                  "flex flex-col items-center text-xs",
+                  "flex flex-col items-center justify-center gap-1 text-xs",
                   pathname === item.href ? "text-red-500" : "text-black"
                 )}
               >
@@ -242,7 +243,7 @@ export default function Navbar() {
 
           <li
             className={cn(
-              "flex flex-col items-center text-xs",
+              "flex flex-col items-center gap-1 text-xs",
               pathname === "/cart" ? "text-red-500" : "text-black"
             )}
           >

@@ -27,23 +27,23 @@ export function NavbarDrawer({ navItems }: { navItems: NavItemType[] }) {
   return (
     <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
       <SheetTrigger asChild className="lg:hidden">
-        <Button size="icon" className="bg-transparent text-black border h-8 w-8 rounded-md dark:border dark:bg-transparent dark:border-white">
+        <Button size="icon" className="bg-transparent cursor-pointer text-black border h-8 w-8 rounded-sm hover:bg-transparent dark:border dark:bg-transparent dark:border-white">
           <Menu  className="size-6" />
         </Button>
       </SheetTrigger>
 
-      <SheetContent className="px-4 w-full">
+      <SheetContent className="px-4 w-[90%]" side="left">
         <SheetHeader className="px-0 border-b">
           <SheetTitle className="px-0">
-            <Link href="/" onClick={closeSheet} className="flex items-center gap-2">
+            <Link href="/" onClick={closeSheet}>
               <Image
                 src="/logo.png"
                 alt="TechVibe"
-                width={70}
-                height={70}
-                className="w-12 rounded-full"
+                width={300}
+                height={100}
+                priority
+                className="w-40 aspect-[3/1] h-auto"
               />
-              <h2 className="text-2xl font-semibold">TechVibe</h2>
             </Link>
           </SheetTitle>
         </SheetHeader>

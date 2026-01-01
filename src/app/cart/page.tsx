@@ -117,11 +117,11 @@ const Cart = () => {
   }, [products]);
 
   return (
-    <AuthCheck className="container mx-auto min-h-screen">
+    <AuthCheck className="container mx-auto min-h-screen py-6">
       <LoadingOverlay visible={isPending} blur />
 
       <div>
-        <h1 className="text-2xl font-bold p-2">Shopping Cart</h1>
+        <h1 className="text-2xl font-bold p-2">Your Cart</h1>
       </div>
 
       <div className="lg:grid grid-cols-4 gap-2">
@@ -129,7 +129,7 @@ const Cart = () => {
         <div className="col-span-3">
           {isCartEmpty && (
             <div className="col-span-3">
-              <p className="text-xl border px-6 py-4 w-full text-left rounded-md bg-muted mt-6">
+              <p className="text-xl border px-6 py-4 w-full text-left rounded-md bg-muted mt-2">
                 Your cart is empty
               </p>
             </div>
@@ -296,7 +296,7 @@ const Cart = () => {
 
         {/* order summary */}
         <div>
-          <div className="min-h-96 border-2 m-4 p-4 rounded-md text-sm">
+          <div className="min-h-96 border-2 mt-4 p-4 rounded-md text-sm">
             <p className="text-xl font-semibold mb-4">Order Summary</p>
 
             <p className="flex justify-between items-center">

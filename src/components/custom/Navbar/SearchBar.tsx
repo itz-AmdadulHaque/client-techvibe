@@ -95,10 +95,10 @@ export default function GlobalSearchModal() {
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="h-8.5 border-slate-300 hover:border-red-500 group"
+          className="h-8.5 border-slate-300 hover:border-red-500 group rounded-sm"
         >
           <Search className="h-4 w-4 group-hover:text-red-500" />
-          <span className="text-muted-foreground pr-1">Search</span>
+          <span className="hidden sm:block text-muted-foreground pr-1 ">Search</span>
         </Button>
       </DialogTrigger>
 
