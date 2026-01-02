@@ -323,11 +323,11 @@ const Cart = () => {
               <span className="text-muted-foreground">Quote Required</span>
             </p>
 
-            <p className="flex justify-between items-center">
+            {/* <p className="flex justify-between items-center">
               <span>{`Product Requests (${productRequests.length})`}</span>
 
               <span className="text-muted-foreground">Quote Required</span>
-            </p>
+            </p> */}
 
             <div className="border-t-2 my-2"></div>
 
