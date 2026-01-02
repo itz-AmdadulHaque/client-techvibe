@@ -137,7 +137,7 @@ export default function ProductRequestForm() {
             <div className="bg-yellow-50 p-4 rounded-md mb-4 text-yellow-800">
               <p>
                 Please verify your google account to continue.{" "}
-                <Link href="/verify-otp" className="text-blue-600">
+                <Link href="/verify-OTP" className="text-blue-600">
                   Click here
                 </Link>
               </p>
