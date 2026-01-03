@@ -64,7 +64,7 @@ const VerifyOTP = () => {
   // 🔁 Resend OTP mutation
   const resendMutation = useMutation({
     mutationFn: async () => {
-      const res = await axiosPrivate.put("/auth/resend-otp")
+      const res = await axiosPrivate.get("/auth/resend-otp")
       return res.data
     },
     onSuccess: () => {

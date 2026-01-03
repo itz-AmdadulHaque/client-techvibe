@@ -1,12 +1,12 @@
 // lib/api.ts
 export async function getCategories() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/categories`, {
-        cache: "no-store", // SSR fresh data
+        cache: "force-cache", // SSR fresh data
+        next: { revalidate: 2 * 60 } // 2min revalidation time
     });
     if (!res.ok) throw new Error("Failed to fetch services");
 
     const data = await res.json()
-
     return data.data;
 }
 
