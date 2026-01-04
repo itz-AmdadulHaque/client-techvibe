@@ -8,9 +8,9 @@ import { getCategories } from "./components/apiCalls";
 import { CategoryType } from "@/Types/Types";
 
 export const metadata: Metadata = {
-  title: "Consultants | TechVibe Global",
+  title: "Engineering Consultancy & Compliance Audits | TechVibe Global",
   description:
-    "Protecting your business with comprehensive fire safety, infrastructure integrity, and IT security solutions from certified professionals.",
+    "Certified consultancy for Fire & Life Safety, Electrical Audits, and IT Infrastructure. We provide strategic engineering guidance and the essential products required for nationwide regulatory compliance.",
 };
 
 export default async function ConsultantsPage({
@@ -29,7 +29,7 @@ export default async function ConsultantsPage({
   return (
     <div className="container mx-auto space-y-4 pb-6">
       <SectionTitle
-        title="Expert Safety & IT Consulting Services"
+        title="Engineering Consultancy"
         desciption="Protecting your business with comprehensive fire safety, infrastructure integrity, and IT security solutions from certified professionals."
       />
 

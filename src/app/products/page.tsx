@@ -17,8 +17,9 @@ export interface SearchPageProps {
 }
 
 export const metadata: Metadata = {
-  title: "Products | TechVibe Global",
-  description: "We can provide all the essential products needed for our services.",
+  title: "High-Quality Engineering & Safety Products | TechVibe Global ",
+  description:
+    "Shop premium equipment for Fire & Life Safety, Electrical Safety, and IT Surveillance. We provide certified, essential products to support your infrastructure.",
 };
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {

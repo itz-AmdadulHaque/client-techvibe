@@ -7,9 +7,8 @@ import SectionTitle from "@/components/custom/SectionTitle/SectionTitle";
 import { CategoryType } from "@/Types/Types";
 
 export const metadata: Metadata = {
-  title: "Services | TechVibe Global",
-  description:
-    "Protecting your business with comprehensive fire safety, infrastructure integrity, and IT security solutions from certified professionals.",
+  title: "Integrated Engineering Services | TechVibe Global",
+  description: "Full-scale implementation of Fire & Life Safety, Electrical Engineering, and IT Surveillance. From complex server setups to nationwide system installations, we provide the technical expertise and the hardware to get it done.",
 };
 
 export default async function ServicePage({
