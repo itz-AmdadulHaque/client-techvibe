@@ -82,10 +82,6 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${candal.variable} ${notoSerifBengali.variable}`}
     >
-      <head>
-        <link rel="icon" href="/logo.png" sizes="any" />
-      </head>
-
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
