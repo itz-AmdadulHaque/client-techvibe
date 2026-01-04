@@ -83,7 +83,7 @@ const Cart = () => {
       toast.success("Order submitted", { position: "bottom-right" });
       queryClient.invalidateQueries({ queryKey: ["cartInfo"] });
 
-      router.push("/profile?tab=orders");
+      router.push("/orders");
     },
     onError: (error: { response: { data: { message: string } } }) => {
       const errorMessage =

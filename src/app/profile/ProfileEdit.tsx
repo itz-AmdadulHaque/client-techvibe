@@ -9,25 +9,26 @@ import AddressEditor from "./component/AddressEditor";
 import { useRouter, useSearchParams } from "next/navigation";
 import ImageEditor from "./component/ImageEditor";
 import ResetPassword from "./component/ResetPassword";
-import OrdersList from "./component/OrdersList";
 import Link from "next/link";
 
 function ProfileComponent() {
   const searchParams = useSearchParams();
-  const defaultTab = searchParams.get("tab") || "profile";
+  const defaultTab = ["profile", "address", "password"].includes(
+    searchParams.get("tab") || ""
+  )
+    ? searchParams.get("tab") || "profile"
+    : "profile";
 
   //order
-  const search = searchParams.get("search");
-  const page = searchParams.get("page");
-  const limit = searchParams.get("limit");
-  const status = searchParams.get("status");
-
   const router = useRouter();
   const { auth } = useAuth();
   const user = auth.user;
 
   const handleTabChange = (value: string) => {
-    router.push(`/profile?tab=${value}`);
+    const tabValue = ["profile", "address", "password"].includes(value)
+      ? value
+      : "profile";
+    router.push(`/profile?tab=${tabValue}`);
   };
 
   return (
@@ -49,12 +50,17 @@ function ProfileComponent() {
         <div className="mt-10">
           <Tabs value={defaultTab} onValueChange={handleTabChange}>
             <TabsList className="w-full">
-              <TabsTrigger className="cursor-pointer" value="profile">Profile</TabsTrigger>
+              <TabsTrigger className="cursor-pointer" value="profile">
+                Profile
+              </TabsTrigger>
 
-              <TabsTrigger className="cursor-pointer" value="address">Address</TabsTrigger>
+              <TabsTrigger className="cursor-pointer" value="address">
+                Address
+              </TabsTrigger>
 
-              <TabsTrigger className="cursor-pointer" value="password">Password</TabsTrigger>
-
+              <TabsTrigger className="cursor-pointer" value="password">
+                Password
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="profile">
@@ -67,10 +73,6 @@ function ProfileComponent() {
 
             <TabsContent value="password">
               <ResetPassword />
-            </TabsContent>
-
-            <TabsContent value="orders">
-              <OrdersList searchParams={{ page, limit, status, search }} />
             </TabsContent>
           </Tabs>
         </div>
