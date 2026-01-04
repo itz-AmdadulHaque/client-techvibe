@@ -16,7 +16,7 @@ const OrdersList = () => {
   // 2. Extract search params
   const searchParams = useSearchParams();
   const page = searchParams.get("page") || "1";
-  const limit = searchParams.get("limit") || "10";
+  const limit = searchParams.get("limit") || "8";
 
   // 3. Update fetch function to accept params
   const getOrders = async (page: string, limit: string) => {
