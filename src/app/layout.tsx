@@ -63,6 +63,7 @@ export const metadata: Metadata = {
     "risk assessment",
   ],
   authors: [{ name: "TechVibe Global" }],
+  metadataBase: new URL("https://techvibeglobal.com"),
   creator: "TechVibe Global",
   publisher: "TechVibe Global",
   twitter: {

@@ -1,6 +1,7 @@
 import AddToCart from "@/components/custom/AddToCart/AddToCart";
 import ImageGallery from "@/components/custom/ImageGallery/ImageGallery";
 import { fetchData } from "@/lib/fetchFunction";
+import { truncateHtml } from "@/lib/utils";
 import { ServiceType } from "@/Types/Types";
 import { Metadata } from "next";
 import React from "react";
@@ -10,37 +11,49 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const data = await fetchData(`/services/${(await params).slug}`);
-  if (!data) {
-    return {};
-  }
-  const service: ServiceType = data.data;
+  const { slug } = await params;
+  const data = await fetchData(`/services/${slug}`);
 
-  const imageUrl = `${process.env.NEXT_PUBLIC_IMAGE_SERVER}/${service.thumbnail}`;
+  if (!data?.data) return { title: "Service Not Found" };
+
+  const service = data.data;
+  const imageUrl = `${process.env.NEXT_PUBLIC_IMAGE_SERVER}/${service?.thumbnail}`;
+
+  // Clean, SEO-friendly description
+  const seoTitle = `${service.title} ${
+    service?.price ? `- BDT ${service.price}` : ""
+  } | TechVibe Global`;
+  const seoDescription = truncateHtml(service.description, 160) + "...";
 
   return {
-    title: service.title,
-    description: `${service.title} - ${service.category.title}`,
+    title: `${service.title} | TechVibe Global}`,
+    description: seoDescription,
 
     openGraph: {
-      title: service.title,
-      description: `${service.title} - ${service.category.title}`,
-      type: "website",
+      title: seoTitle,
+      description: seoDescription,
+      type: "article", // Use article or website
+      url: `/services/${slug}`, //added base url in layout
       images: [
         {
           url: imageUrl,
-          width: 630,
+          width: 1200, // Standard OG size
           height: 630,
-          alt: service.title,
+          alt: seoTitle,
         },
       ],
     },
 
     twitter: {
       card: "summary_large_image",
-      title: service.title,
-      description: `${service.title} - ${service.category.title}`,
+      title: seoTitle,
+      description: seoDescription,
       images: [imageUrl],
+    },
+
+    // Technical SEO: Prevents duplicate content issues
+    alternates: {
+      canonical: `/services/${slug}`, // added base url in layout
     },
   };
 }
@@ -50,7 +63,10 @@ const ServiceDetails = async ({
 }: {
   params: Promise<{ slug: string }>;
 }) => {
-  const data = await fetchData(`/services/${(await params).slug}`);
+  const { slug } = await params;
+  const data = await fetchData(`/services/${slug}`);
+  if (!data?.data)
+    return <p className="text-2xl mt-12 font-bold text-center">Service Not Found</p>;
 
   const service: ServiceType = data.data;
 

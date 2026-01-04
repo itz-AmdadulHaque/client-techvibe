@@ -6,49 +6,55 @@ import React from "react";
 import HandleAddToCart from "../HandleAddToCart";
 import ProductPrice from "@/components/custom/ProductPrice/ProductPrice";
 import { Metadata } from "next";
+import { truncateHtml } from "@/lib/utils";
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const data = await fetchData(`/products/${(await params).slug}`);
-  if (!data) {
-    return {};
-  }
-  const product: Product = data.data;
+  const { slug } = await params;
+  const data = await fetchData(`/products/${slug}`);
 
-  const imageUrl = `${process.env.NEXT_PUBLIC_IMAGE_SERVER}/${product.thumbnail}`;
+  if (!data?.data) return { title: "Product Not Found" };
+  const product = data.data;
+  const imageUrl = `${process.env.NEXT_PUBLIC_IMAGE_SERVER}/${product?.thumbnail}`;
+
+  // Clean, SEO-friendly description
+  const seoTitle = `${product.title} ${
+    product.modelNumber ? `(${product.modelNumber})` : ""
+  }, ${product?.price ? `BDT ${product.price}` : ""} | TechVibe Global`;
+  const seoDescription = truncateHtml(product.description, 160) + "...";
 
   return {
-    title: product.title,
-    description: `${product.title} - ${product.modelNumber} - ${
-      product.category.title
-    } - ${product.subCategory.title} ${product.price ? product.price : ""}`,
+    title: `${product.title} | TechVibe Global}`,
+    description: seoDescription,
 
     openGraph: {
-      title: product.title,
-      description: `${product.title} - ${product.modelNumber} - ${
-        product.category.title
-      } - ${product.subCategory.title} ${product.price ? product.price : ""}`,
-      type: "website",
+      title: seoTitle,
+      description: seoDescription,
+      type: "article", // Use article or website
+      url: `/products/${slug}`, //added base url in layout
       images: [
         {
           url: imageUrl,
-          width: 630,
+          width: 1200, // Standard OG size
           height: 630,
-          alt: product.title,
+          alt: seoTitle,
         },
       ],
     },
 
     twitter: {
       card: "summary_large_image",
-      title: product.title,
-      description: `${product.title} - ${product.modelNumber} - ${
-        product.category.title
-      } - ${product.subCategory.title} ${product.price ? product.price : ""}`,
+      title: seoTitle,
+      description: seoDescription,
       images: [imageUrl],
+    },
+
+    // Technical SEO: Prevents duplicate content issues
+    alternates: {
+      canonical: `/products/${slug}`, // added base url in layout
     },
   };
 }
@@ -59,7 +65,8 @@ const ProductDetails = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const data = await fetchData(`/products/${(await params).slug}`);
-
+  if (!data?.data)
+    return <p className="text-2xl mt-12 font-bold text-center">Product Not Found</p>;
   const product: Product = data.data;
 
   return (

@@ -46,3 +46,9 @@ export const generateErrorMessage = (
 
   return capitalizeText(optionalMessage || "Something went wrong!");
 };
+
+export function truncateHtml(html: string, length: number) {
+  // Strip tags for counting
+  const text = html.replace(/<[^>]+>/g, "");
+  return text.length > length ? text.slice(0, length) + "..." : text;
+}
