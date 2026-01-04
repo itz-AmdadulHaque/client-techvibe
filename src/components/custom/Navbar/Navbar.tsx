@@ -7,6 +7,7 @@ import {
   Briefcase,
   Package2,
   Folder,
+  HardHat,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -74,6 +75,11 @@ export default function Navbar() {
       href: "/request-product",
       icon: <Package2  />,
     },
+    {
+      label: "About Us",
+      href: "/about",
+      icon: <HardHat />
+    }
   ];
 
   const bottomNavItems: NavItemType[] = [
@@ -116,7 +122,7 @@ export default function Navbar() {
     <>
       {/* Desktop Top Navbar */}
       <nav className="shadow-md fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-700">
-        <div className="flex justify-between items-center px-2 lg:px-3 py-1.5 md:py-2 container mx-auto">
+        <div className="flex justify-between items-center px-2 sm:px-0 py-1.5 md:py-2 container mx-auto">
           <Link href="/">
             <Image
               src="/logo.png"
