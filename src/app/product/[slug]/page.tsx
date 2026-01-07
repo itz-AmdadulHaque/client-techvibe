@@ -23,7 +23,9 @@ export async function generateMetadata({
   // Clean, SEO-friendly description
   const seoTitle = `${product.title} ${
     product.modelNumber ? `(${product.modelNumber})` : ""
-  }, ${product?.price ? `BDT ${product.price}` : ""} | TechVibe Global`;
+  }${
+    product?.price ? `, BDT ${product.price - (product.discount || 0)}` : ""
+  } | TechVibe Global`;
   const seoDescription = truncateHtml(product.description, 160) + "...";
 
   return {
@@ -66,7 +68,9 @@ const ProductDetails = async ({
 }) => {
   const data = await fetchData(`/products/${(await params).slug}`);
   if (!data?.data)
-    return <p className="text-2xl mt-12 font-bold text-center">Product Not Found</p>;
+    return (
+      <p className="text-2xl mt-12 font-bold text-center">Product Not Found</p>
+    );
   const product: Product = data.data;
 
   return (
