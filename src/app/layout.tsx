@@ -11,6 +11,8 @@ import { Candal } from "next/font/google";
 import Footer from "@/components/custom/Footer/Footer";
 import { DataProvider } from "@/Provider/DataProvider/DataProvider";
 import ScrollToTop from "@/components/custom/Navbar/ScrollToTop";
+import Script from "next/script";
+import FacebookPixel from "./homePageComponents/FacebookPixel";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -82,9 +84,33 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${candal.variable} ${notoSerifBengali.variable}`}
     >
+
+      <head>
+        {/* Meta Pixel */}
+
+
+        <Script
+          id="1893871621237526"
+          strategy="afterInteractive"
+        >
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1426779722336683');
+            fbq('track', 'PageView');
+          `}
+        </Script>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <FacebookPixel />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -106,6 +132,9 @@ export default function RootLayout({
           </ReactQueryClientProvider>
         </ThemeProvider>
       </body>
+
+      <noscript> <img height="1" width="1" style={{ display: "none" }} src="https://www.facebook.com/tr?id=1426779722336683&ev=PageView&noscript=1" /></noscript>
+
     </html>
   );
 }
