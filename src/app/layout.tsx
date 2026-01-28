@@ -13,6 +13,7 @@ import { DataProvider } from "@/Provider/DataProvider/DataProvider";
 import ScrollToTop from "@/components/custom/Navbar/ScrollToTop";
 import Script from "next/script";
 import FacebookPixel from "./homePageComponents/FacebookPixel";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -87,10 +88,8 @@ export default function RootLayout({
 
       <head>
         {/* Meta Pixel */}
-
-
         <Script
-          id="1893871621237526"
+          id="1426779722336683"
           strategy="afterInteractive"
         >
           {`
@@ -110,7 +109,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <FacebookPixel />
+        <Suspense fallback={null}>
+          <FacebookPixel />
+        </Suspense>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
